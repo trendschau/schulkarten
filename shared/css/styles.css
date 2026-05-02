@@ -1,0 +1,302 @@
+/* =============================================
+   CSS CUSTOM PROPERTIES
+   ============================================= */
+:root {
+  --bg: #f0eeeb;
+  --sidebar-bg: #faf9f7;
+  --border: #e0ddd8;
+  --text: #1a1816;
+  --text-secondary: #6b6660;
+  --text-muted: #a09c98;
+  --accent: #2563eb;
+  --chip-bg: #eceae6;
+  --chip-active: #1a1816;
+  --chip-active-text: #faf9f7;
+
+  --color-grundschule:   #2563eb;
+  --color-gymnasium:     #7c3aed;
+  --color-gesamtschule:  #059669;
+  --color-hauptschule:   #0d9488;
+  --color-realschule:    #0891b2;
+  --color-sekundarschule:#047857;
+  --color-foerderschule: #db2777;
+  --color-berufsschule:  #d97706;
+  --color-freie-schule:  #7c3aed;
+  --color-andere:        #71717a;
+}
+
+/* =============================================
+   BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0; height: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
+
+#map { height: 100%; width: 100%; }
+
+/* =============================================
+   SIDEBAR — desktop vs mobile
+   ============================================= */
+
+/* Desktop: static right column */
+.sidebar-desktop {
+  position: relative;
+  z-index: 10;
+}
+
+/* Mobile (<60em = Tachyons -l breakpoint ≈ 960px, we use 640px) */
+@media (max-width: 60em) {
+  #sidebar {
+    position: fixed !important;
+    top: 0; right: 0; bottom: 0;
+    z-index: 500;
+    transform: translateX(100%);
+    transition: transform .25s cubic-bezier(.4,0,.2,1);
+    box-shadow: -4px 0 24px rgba(0,0,0,.12);
+  }
+  #sidebar.open {
+    transform: translateX(0);
+  }
+  /* Burger visible on mobile */
+  #burgerBtn  { display: flex !important; }
+  #sidebarCloseBtn { display: flex !important; }
+}
+
+aside::-webkit-scrollbar { width: 4px; }
+aside::-webkit-scrollbar-track { background: transparent; }
+aside::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* =============================================
+   TYPOGRAPHY HELPERS
+   ============================================= */
+h1, h2, h3, h4 { letter-spacing: -0.02em; }
+
+.section-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.info-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+/* =============================================
+   DIVIDER
+   ============================================= */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 14px 0;
+}
+
+/* =============================================
+   SEARCH
+   ============================================= */
+.search-wrap { position: relative; }
+
+.search-icon {
+  position: absolute;
+  left: 10px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 8px 10px 8px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+#searchInput:focus       { border-color: var(--accent); }
+#searchInput::placeholder { color: var(--text-muted); }
+
+#resultCount {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+#resultCount span { color: var(--accent); font-weight: 500; }
+
+/* =============================================
+   YEAR BUTTONS
+   ============================================= */
+.year-btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text-secondary);
+  transition: all .15s;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+}
+.year-btn:hover  { border-color: var(--accent); color: var(--accent); }
+.year-btn.active { background: var(--chip-active); border-color: var(--chip-active); color: var(--chip-active-text); }
+
+/* =============================================
+   FILTER CHIPS
+   ============================================= */
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  transition: background .12s;
+  border: none;
+  background: none;
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
+.filter-chip:hover        { background: var(--chip-bg); }
+.filter-chip input        { display: none; }
+.filter-chip.checked      { color: var(--text); }
+
+.chip-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.3;
+  transition: opacity .15s;
+}
+.filter-chip.checked .chip-dot { opacity: 1; }
+
+/* =============================================
+   CARRIER CHIPS
+   ============================================= */
+.carrier-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  background: white;
+  transition: all .15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.carrier-chip input   { display: none; }
+.carrier-chip.checked { background: var(--chip-active); border-color: var(--chip-active); color: white; }
+
+/* =============================================
+   WATCHLIST FILTER BUTTON
+   ============================================= */
+.watchlist-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all .15s;
+}
+.watchlist-filter-btn.active {
+  background: #fef3c7;
+  border-color: #d97706;
+  color: #92400e;
+  font-weight: 500;
+}
+.watchlist-badge {
+  margin-left: auto;
+  background: #d97706;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 99px;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* =============================================
+   BOOKMARK BUTTON (inside overlay)
+   ============================================= */
+.bookmark-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 0.73rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.bookmark-btn:hover { border-color: var(--accent); color: var(--accent); }
+.bookmark-btn.saved { background: #fef3c7; border-color: #d97706; color: #92400e; }
+.bookmark-btn svg   { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* =============================================
+   REMOVE / CLOSE BUTTON
+   ============================================= */
+.remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+  padding: 2px 4px;
+  flex-shrink: 0;
+  transition: color .12s;
+  font-family: 'DM Sans', sans-serif;
+}
+.remove-btn:hover { color: #dc2626; }
+
+/* =============================================
+   OVERLAY FOOTER LINKS
+   ============================================= */
+.overlay-link {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.overlay-link.accent { color: var(--accent); }
+.overlay-link:hover  { opacity: .75; }
+
+/* =============================================
+   LEAFLET OVERRIDES
+   ============================================= */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
