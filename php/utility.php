@@ -27,7 +27,7 @@ function readCsv($file, $delimiter = ";") {
         rewind($handle);
     }
 
-    $header = fgetcsv($handle, 0, $delimiter);
+    $header = fgetcsv($handle, 0, $delimiter, '"', '\\');
     if (!$header) {
         echo "No header in: $file\n";
         return $rows;
@@ -39,7 +39,7 @@ function readCsv($file, $delimiter = ";") {
     // Drop empty trailing column that Excel sometimes adds
     if (end($header) === '') array_pop($header);
 
-    while (($data = fgetcsv($handle, 0, $delimiter)) !== false) {
+    while (($data = fgetcsv($handle, 0, $delimiter, '"', '\\')) !== false) {
         if (!$data) continue;
 
         $data = array_map('trim', $data);

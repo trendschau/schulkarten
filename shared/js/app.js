@@ -73,7 +73,7 @@ function toggleSidebar() {
 // WATCHLIST — localStorage
 // ==============================
 
-const STORAGE_KEY = 'schulkarte_watchlist';
+let STORAGE_KEY = 'schulkarte_watchlist_default';
 
 function loadWatchlist() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -84,35 +84,103 @@ function saveWatchlist(wl) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(wl));
 }
 
-function isBookmarked(id) { return !!loadWatchlist()[id]; }
+function isBookmarked(id) {
+  return !!loadWatchlist()[id]?.bookmarked;
+}
+
+// ==============================
+// TOGGLE BOOKMARK
+// ==============================
 
 function toggleBookmark(s) {
   const wl = loadWatchlist();
-  if (wl[s.id]) { delete wl[s.id]; }
-  else          { wl[s.id] = { school: s, note: '' }; }
+  const id = s.id;
+
+  if (!wl[id]) {
+    wl[id] = {
+      bookmarked: true,
+      note: ''
+    };
+  } else {
+    wl[id].bookmarked = !wl[id].bookmarked;
+
+    // cleanup: wenn unbookmarked + keine Note → löschen
+    if (!wl[id].bookmarked && (!wl[id].note || wl[id].note.trim() === '')) {
+      delete wl[id];
+    }
+  }
+
   saveWatchlist(wl);
   renderSchools();
   updateWatchlistBadge();
 }
 
+// ==============================
+// BADGE
+// ==============================
+
 function updateWatchlistBadge() {
   const badge = document.getElementById('watchlistBadge');
-  if (badge) badge.textContent = Object.keys(loadWatchlist()).length;
+  if (!badge) return;
+
+  const wl = loadWatchlist();
+  const count = Object.values(wl).filter(e => e.bookmarked).length;
+
+  badge.textContent = count;
 }
 
 function toggleWatchlistFilter() {
   showOnlyWatchlist = !showOnlyWatchlist;
+
   const btn = document.getElementById('watchlistFilterBtn');
   if (btn) btn.classList.toggle('active', showOnlyWatchlist);
+
   renderSchools();
 }
 
+// ==============================
+// BUTTON UI
+// ==============================
+
 function bookmarkBtnInner(saved) {
   const star = saved
-    ? `<svg viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
-    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    ? `<svg viewBox="0 0 24 24" fill="#d97706" stroke="#d97706" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>`;
+
   return star + (saved ? ' Gemerkt' : ' Merken');
 }
+
+// ==============================
+// NOTES (Overlay)
+// ==============================
+
+document.addEventListener('input', e => {
+  if (e.target.id !== 'overlayNote') return;
+  if (!currentOverlaySchool) return;
+
+  const wl = loadWatchlist();
+  const id = currentOverlaySchool.id;
+
+  if (!wl[id]) {
+    wl[id] = {
+      bookmarked: false,
+      note: ''
+    };
+  }
+
+  wl[id].note = e.target.value;
+
+  // cleanup: wenn kein bookmark + keine note → löschen
+  if (!wl[id].bookmarked && (!wl[id].note || wl[id].note.trim() === '')) {
+    delete wl[id];
+  }
+
+  saveWatchlist(wl);
+});
 
 // ==============================
 // SCHOOL OVERLAY
@@ -146,6 +214,57 @@ function openOverlay(s) {
   const overlay = document.getElementById('schoolOverlay');
   overlay.classList.remove('dn');
   overlay.classList.add('db');
+
+  const wl = loadWatchlist();
+  const entry = wl[s.id];
+
+  document.getElementById('overlayNote').value = entry?.note || '';
+
+  renderSpecificFields(s);
+}
+
+function renderSpecificFields(s) {
+  const container = document.getElementById('overlaySpecific');
+  if (!container) return;
+
+  const spec = s.specific || {};
+  const entries = Object.entries(spec);
+
+  if (!entries.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="flex flex-column" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      ${entries.map(([key, value]) => `
+        <div>
+          <div class="info-label">
+            ${key}
+          </div>
+          <div class="f7" style="font-family:'DM Mono',monospace;color:var(--text-secondary);">
+            ${formatSpecificValue(value)}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function formatSpecificValue(value) {
+  if (Array.isArray(value)) {
+    return value.join(', ');
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 'Ja' : 'Nein';
+  }
+
+  if (value === null || value === undefined || value === '') {
+    return '–';
+  }
+
+  return value;
 }
 
 function closeOverlay() {
@@ -192,9 +311,17 @@ async function loadSchools() {
   const res  = await fetch(SCHOOLS_FILE);
   const data = await res.json();
 
-  // Apply city meta from the geojson — single source of truth for city config.
   const meta = data.meta || {};
+
+  // set city-specific storage key
+  const citySlug = (meta.city || 'default')
+    .toLowerCase()
+    .replace(/\s+/g, '_');
+
+  STORAGE_KEY = `schulkarte_watchlist_${citySlug}`;
+
   if (meta.lat && meta.lng) map.setView([meta.lat, meta.lng], meta.zoom ?? 13);
+
   if (meta.city) {
     const cityLabel = `Schulkarte ${meta.city}`;
     document.title = cityLabel;
@@ -208,7 +335,12 @@ async function loadSchools() {
     lat: f.geometry.coordinates[1],
     lng: f.geometry.coordinates[0],
   }));
+
+  initMappingInfo(meta);
+  injectLicense(meta);
+  buildSchoolFilters();
   renderSchools();
+  updateWatchlistBadge(); // ensure correct count after key change
 }
 
 // ==============================
@@ -268,14 +400,14 @@ function renderSchools(highlightedIds = null) {
   const markers          = [];
 
   allSchools.forEach(s => {
-    if (!selectedTypes.includes(s.schulform))                                          return;
-    if (selectedCarriers.length > 0 && !selectedCarriers.includes(s.rechtsform))      return;
+    if (!selectedTypes.includes(s.schulform)) return;
+    if (selectedCarriers.length > 0 && !selectedCarriers.includes(s.rechtsform)) return;
     if (search && !`${s.schulname} ${s.schulform} ${s.schulform_raw}`.toLowerCase().includes(search)) return;
-    if (showOnlyWatchlist && !wl[s.id])                                                return;
-
+    if (showOnlyWatchlist && !wl[s.id]?.bookmarked) return;
+    
     const color         = getSchoolColor(s.schulform);
     const isHighlighted = highlightedIds === null || highlightedIds.has(s.id);
-    const isMarked      = !!wl[s.id];
+    const isMarked      = !!wl[s.id]?.bookmarked;
     const opacity       = isHighlighted ? 0.95 : 0.2;
     const radius        = isHighlighted ? (isMarked ? 8 : 6) : 4;
 
@@ -368,7 +500,16 @@ function syncChipStates() {
 // ==============================
 
 function buildSchoolFilters() {
-  document.getElementById('schoolFilters').innerHTML = SCHULFORMEN.map(sf => `
+  // count occurrences per schulform
+  const counts = {};
+  allSchools.forEach(s => {
+    counts[s.schulform] = (counts[s.schulform] || 0) + 1;
+  });
+
+  // filter only those with data
+  const availableForms = SCHULFORMEN.filter(sf => counts[sf.value] > 0);
+
+  document.getElementById('schoolFilters').innerHTML = availableForms.map(sf => `
     <label class="filter-chip checked">
       <input type="checkbox" value="${sf.value}" checked>
       <span class="chip-dot" style="background:${sf.color};"></span>
@@ -411,6 +552,54 @@ function buildZoneButtons() {
   });
 }
 
+function injectLicense(meta) {
+  if (!meta.lizenzhinweis) return;
+
+  const sidebar = document.getElementById('ownerFilters').closest('.mb3');
+
+  sidebar.insertAdjacentHTML('afterend', `
+    <div class="divider"></div>
+    <div class="mb3">
+      <div class="section-title">Datenlizenzen</div>
+      <div class="f7" style="color:var(--text-muted);line-height:1.5;">
+        ${meta.lizenzhinweis}
+      </div>
+    </div>
+  `);
+}
+
+function initMappingInfo(meta) {
+  if (!meta.mappinghinweis) return;
+
+  const btn = document.getElementById('mappingInfoBtn');
+  if (!btn) return;
+
+  let tooltip;
+
+  btn.addEventListener('mouseenter', () => {
+    tooltip = document.createElement('div');
+    tooltip.className = 'pa2 br2 f7';
+    tooltip.style.position = 'absolute';
+    tooltip.style.background = 'var(--sidebar-bg)';
+    tooltip.style.border = '1px solid var(--border)';
+    tooltip.style.boxShadow = '0 4px 12px rgba(0,0,0,.1)';
+    tooltip.style.maxWidth = '240px';
+    tooltip.style.zIndex = 999;
+
+    tooltip.innerHTML = meta.mappinghinweis;
+
+    document.body.appendChild(tooltip);
+
+    const rect = btn.getBoundingClientRect();
+    tooltip.style.left = rect.left + 'px';
+    tooltip.style.top  = (rect.bottom + 6) + 'px';
+  });
+
+  btn.addEventListener('mouseleave', () => {
+    if (tooltip) tooltip.remove();
+  });
+}
+
 // ==============================
 // EVENTS
 // ==============================
@@ -432,7 +621,7 @@ document.getElementById('searchInput').addEventListener('input', e => {
 // INIT
 // ==============================
 
-buildSchoolFilters();
+// buildSchoolFilters();
 buildCarrierFilters();
 buildZoneButtons();
 

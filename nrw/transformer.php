@@ -13,7 +13,7 @@ $bundesland = "NRW";
 $city       = "Bielefeld";
 $lat        = 52.02;   // map center latitude
 $lng        = 8.53;    // map center longitude
-$zoom       = 13;      // map initial zoom
+$zoom       = 11;      // map initial zoom
 $outFile    = __DIR__ . "/../bielefeld/data/schulen.geojson";
 
 $license = 'Verwendete Daten: Ministeriums für Schule und Bildung '
@@ -60,10 +60,11 @@ function mapSchulform($code) {
 // =========================
 
 $schools    = readCsv("schuldaten.csv");
-$traeger    = indexBy(readCsv("key_traeger.csv"),              "Traegernummer");
-$schulform  = indexBy(readCsv("key_schulformschluessel.csv"), "Schluessel");
-$anzahl     = indexBy(readCsv("anzahlen.csv"),                 "Schulnummer");
-$sozial     = indexBy(readCsv("sozialindex.csv"),              "Schulnummer");
+$traeger    = indexBy(readCsv("key_traeger.csv"),"Traegernummer");
+$schulform  = indexBy(readCsv("key_schulformschluessel.csv"),"Schluessel");
+$anzahl     = indexBy(readCsv("anzahlen.csv"),"Schulnummer");
+$sozial     = indexBy(readCsv("sozialindex.csv"),"Schulnummer");
+$bezreg     = indexBy(readCsv("key_bezreg.csv"),"Schlüssel");
 
 // =========================
 // TRANSFORM
@@ -78,8 +79,9 @@ foreach ($schools as $s) {
 
     [$featureLat, $featureLng] = utmToLatLng((float)$s["UTMRechtswert"], (float)$s["UTMHochwert"]);
 
-    $id   = $s["Schulnummer"] ?? null;
-    $code = $s["Schulform"]   ?? null;
+    $id         = $s["Schulnummer"] ?? null;
+    $code       = $s["Schulform"]   ?? null;
+    $bezregid   = $s["Bezirksregierung"] ?? null;
 
     $props = [];
 
@@ -101,7 +103,7 @@ foreach ($schools as $s) {
         default => null
     });
 
-    setProp($props, "regbezirk",  $s["Bezirksregierung"] ?? null);
+    setProp($props, "regbezirk",  $bezreg[$bezregid]["Bezirksregierung"] ?? null);
     setProp($props, "ort",        $s["Ort"]              ?? null);
     setProp($props, "plz",        $s["PLZ"]              ?? null);
     setProp($props, "strasse",    $s["Strasse"]          ?? null);

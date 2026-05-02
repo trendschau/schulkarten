@@ -1,12 +1,12 @@
 {
     "type": "FeatureCollection",
     "meta": {
-        "lizenzhinweis": "Verwendete Daten: Ministeriums für Schule und Bildung (<a href=\"https://www.schulministerium.nrw/open-data\">MSB</a>), <a href=\"https://www.govdata.de/dl-de/by-2-0\">dl-de/by-2-0</a>",
-        "mappinghinweis": "Schulformen wurden über mapSchulform() in ein UI-Schema überführt.",
         "city": "Bielefeld",
         "lat": 52.02,
         "lng": 8.53,
-        "zoom": 13
+        "zoom": 11,
+        "lizenzhinweis": "Verwendete Daten: Ministeriums für Schule und Bildung (<a href=\"https://www.schulministerium.nrw/open-data\">MSB</a>), <a href=\"https://www.govdata.de/dl-de/by-2-0\">dl-de/by-2-0</a>",
+        "mappinghinweis": "Schulformen wurden über mapSchulform() in ein UI-Schema überführt."
     },
     "features": [
         {
@@ -14,8 +14,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5907288,
-                    52.04731692
+                    8.590728802468346,
+                    52.047316913875775
                 ]
             },
             "properties": {
@@ -28,7 +28,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33609",
                 "strasse": "Schlehenweg 24",
@@ -54,8 +54,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55462386,
-                    52.0120942
+                    8.554623860938754,
+                    52.01209420265938
                 ]
             },
             "properties": {
@@ -68,7 +68,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33604",
                 "strasse": "Fritz-Reuter-Str. 30",
@@ -94,8 +94,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51566162,
-                    52.04182653
+                    8.515661621270663,
+                    52.041826530063155
                 ]
             },
             "properties": {
@@ -108,7 +108,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33613",
                 "strasse": "Am Brodhagen 50",
@@ -134,8 +134,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52284457,
-                    52.032721
+                    8.522844573087259,
+                    52.03272100171571
                 ]
             },
             "properties": {
@@ -148,7 +148,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Gutenbergstr. 19",
@@ -172,8 +172,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56778702,
-                    52.02054981
+                    8.567787021856605,
+                    52.020549811063525
                 ]
             },
             "properties": {
@@ -186,7 +186,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Otto-Brenner-Str. 45",
@@ -210,8 +210,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55761906,
-                    52.03637216
+                    8.557619061733952,
+                    52.03637215948382
                 ]
             },
             "properties": {
@@ -224,7 +224,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33609",
                 "strasse": "Herforder Str. 182-194",
@@ -244,8 +244,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51429185,
-                    51.98389177
+                    8.514291848646865,
+                    51.98389177093561
                 ]
             },
             "properties": {
@@ -258,7 +258,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Stadtring 39",
@@ -278,8 +278,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52919543,
-                    52.02068963
+                    8.529195428650747,
+                    52.020689629636
                 ]
             },
             "properties": {
@@ -292,7 +292,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Klosterplatz 3a",
@@ -318,8 +318,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53082518,
-                    52.04181595
+                    8.53082518328354,
+                    52.041815951216144
                 ]
             },
             "properties": {
@@ -332,7 +332,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33613",
                 "strasse": "Klarhorststr. 8",
@@ -358,8 +358,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56036731,
-                    52.00141647
+                    8.560367306348185,
+                    52.001416471458114
                 ]
             },
             "properties": {
@@ -372,7 +372,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33605",
                 "strasse": "Neue Str. 13-15",
@@ -398,8 +398,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54195012,
-                    52.01468897
+                    8.54195011654543,
+                    52.014688964028444
                 ]
             },
             "properties": {
@@ -412,7 +412,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Rohrteichstr. 73",
@@ -438,8 +438,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56491063,
-                    52.03162511
+                    8.56491063207215,
+                    52.03162510376938
                 ]
             },
             "properties": {
@@ -452,7 +452,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33609",
                 "strasse": "Petristr. 48",
@@ -478,8 +478,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5213528,
-                    52.04546416
+                    8.521352800149812,
+                    52.04546415321648
                 ]
             },
             "properties": {
@@ -492,7 +492,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33613",
                 "strasse": "Weihestr. 4-6",
@@ -518,8 +518,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.48691814,
-                    52.03851309
+                    8.486918140334714,
+                    52.038513084683366
                 ]
             },
             "properties": {
@@ -532,7 +532,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33619",
                 "strasse": "Wellensiek 208",
@@ -558,8 +558,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56559347,
-                    52.01832097
+                    8.565593470349919,
+                    52.018320968817974
                 ]
             },
             "properties": {
@@ -572,7 +572,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33604",
                 "strasse": "Spindelstr. 119",
@@ -598,8 +598,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55949348,
-                    52.05035113
+                    8.559493481182509,
+                    52.05035112787833
                 ]
             },
             "properties": {
@@ -612,7 +612,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33611",
                 "strasse": "Meyer-zu-Eissen-Weg 4",
@@ -638,8 +638,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56558633,
-                    52.03861358
+                    8.565586325764242,
+                    52.038613578375234
                 ]
             },
             "properties": {
@@ -652,7 +652,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33609",
                 "strasse": "Herforder Str. 263",
@@ -678,8 +678,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54574719,
-                    52.02104232
+                    8.545747194076041,
+                    52.021042320387814
                 ]
             },
             "properties": {
@@ -692,7 +692,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Heeper Str. 50",
@@ -718,8 +718,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58847131,
-                    52.04702134
+                    8.588471307995183,
+                    52.047021341970876
                 ]
             },
             "properties": {
@@ -732,7 +732,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33609",
                 "strasse": "Am Wellbach 21",
@@ -758,8 +758,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51988905,
-                    52.01060013
+                    8.519889046089947,
+                    52.01060012326049
                 ]
             },
             "properties": {
@@ -772,7 +772,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "Deckertstr. 1",
@@ -798,8 +798,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58476484,
-                    51.99851998
+                    8.58476483908232,
+                    51.99851998157318
                 ]
             },
             "properties": {
@@ -812,7 +812,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33605",
                 "strasse": "Detmolder Str. 415",
@@ -836,8 +836,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54906955,
-                    52.01383531
+                    8.549069545232742,
+                    52.01383531079648
                 ]
             },
             "properties": {
@@ -850,7 +850,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33604",
                 "strasse": "Fröbelstr. 7",
@@ -876,8 +876,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52382253,
-                    52.02573896
+                    8.523822531784655,
+                    52.025738959629756
                 ]
             },
             "properties": {
@@ -890,7 +890,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Große-Kurfürsten-Str. 53",
@@ -916,8 +916,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53788807,
-                    52.05536626
+                    8.537888065068925,
+                    52.05536625632344
                 ]
             },
             "properties": {
@@ -930,7 +930,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33611",
                 "strasse": "Stapelbrede 65",
@@ -956,8 +956,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50945666,
-                    51.99329436
+                    8.5094566608705,
+                    51.99329435790657
                 ]
             },
             "properties": {
@@ -970,7 +970,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Schulstr. 29",
@@ -996,8 +996,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51049347,
-                    51.98903692
+                    8.51049347128159,
+                    51.989036913034774
                 ]
             },
             "properties": {
@@ -1010,7 +1010,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Wikingerstr. 15",
@@ -1036,8 +1036,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.48571423,
-                    51.98459763
+                    8.485714230342296,
+                    51.984597631212196
                 ]
             },
             "properties": {
@@ -1050,7 +1050,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33649",
                 "strasse": "Von-Möller-Str. 54",
@@ -1076,8 +1076,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.47194564,
-                    51.99640491
+                    8.47194563739529,
+                    51.99640491152911
                 ]
             },
             "properties": {
@@ -1090,7 +1090,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33649",
                 "strasse": "Carl-Severing-Str. 165",
@@ -1114,8 +1114,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.45850566,
-                    51.97192412
+                    8.458505657779382,
+                    51.9719241221486
                 ]
             },
             "properties": {
@@ -1128,7 +1128,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33649",
                 "strasse": "Quittenweg 15",
@@ -1152,8 +1152,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50732594,
-                    51.97908858
+                    8.507325937938408,
+                    51.97908858177861
                 ]
             },
             "properties": {
@@ -1166,7 +1166,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Wilhelm-Thielke-Str. 33",
@@ -1190,8 +1190,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53411523,
-                    51.95671091
+                    8.534115229633354,
+                    51.9567109113876
                 ]
             },
             "properties": {
@@ -1204,7 +1204,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "Buschkampstr. 134",
@@ -1228,8 +1228,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50013784,
-                    51.94990017
+                    8.500137842453208,
+                    51.94990017159822
                 ]
             },
             "properties": {
@@ -1242,7 +1242,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "An der Windflöte 38",
@@ -1268,8 +1268,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54947391,
-                    51.96775778
+                    8.549473914771681,
+                    51.96775778011555
                 ]
             },
             "properties": {
@@ -1282,7 +1282,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "Am Flugplatz 40",
@@ -1308,8 +1308,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.60197674,
-                    51.95311167
+                    8.601976737602534,
+                    51.9531116687165
                 ]
             },
             "properties": {
@@ -1322,7 +1322,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33689",
                 "strasse": "Am Stadion 181",
@@ -1348,8 +1348,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.57813467,
-                    51.94918947
+                    8.578134667238325,
+                    51.94918946543604
                 ]
             },
             "properties": {
@@ -1362,7 +1362,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33689",
                 "strasse": "Vennhofallee 85",
@@ -1388,8 +1388,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58876751,
-                    51.95273361
+                    8.588767510646433,
+                    51.952733606561615
                 ]
             },
             "properties": {
@@ -1402,7 +1402,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33689",
                 "strasse": "Werraweg 54",
@@ -1426,8 +1426,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.49179648,
-                    52.05829638
+                    8.491796481087926,
+                    52.0582963771658
                 ]
             },
             "properties": {
@@ -1440,7 +1440,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33619",
                 "strasse": "Babenhauser Str. 155",
@@ -1466,8 +1466,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.45049983,
-                    52.04560462
+                    8.450499833819752,
+                    52.04560461579379
                 ]
             },
             "properties": {
@@ -1480,7 +1480,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33619",
                 "strasse": "Großer Kamp 47",
@@ -1506,8 +1506,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.64050382,
-                    52.04648128
+                    8.640503824708354,
+                    52.046481273726116
                 ]
             },
             "properties": {
@@ -1520,7 +1520,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33729",
                 "strasse": "Kafkastr. 38",
@@ -1546,8 +1546,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.60250425,
-                    52.07437493
+                    8.602504251045188,
+                    52.07437492855005
                 ]
             },
             "properties": {
@@ -1560,7 +1560,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33729",
                 "strasse": "Am Bohnenkamp 15",
@@ -1586,8 +1586,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.6111271,
-                    52.03073476
+                    8.611127104382764,
+                    52.030734753221545
                 ]
             },
             "properties": {
@@ -1600,7 +1600,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33719",
                 "strasse": "Rüggesiek 11",
@@ -1626,8 +1626,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.60663419,
-                    52.02280779
+                    8.606634185508424,
+                    52.02280778703397
                 ]
             },
             "properties": {
@@ -1640,7 +1640,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33719",
                 "strasse": "Wedepohlstr. 1",
@@ -1664,8 +1664,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.61151257,
-                    51.99297387
+                    8.611512566102002,
+                    51.99297386580194
                 ]
             },
             "properties": {
@@ -1678,7 +1678,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33699",
                 "strasse": "Detmolder Str. 613",
@@ -1702,8 +1702,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.61360078,
-                    52.05829113
+                    8.613600782071748,
+                    52.058291130664784
                 ]
             },
             "properties": {
@@ -1716,7 +1716,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33729",
                 "strasse": "Elverdisser Str. 2-4",
@@ -1742,8 +1742,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.60613758,
-                    52.01131565
+                    8.6061375841519,
+                    52.01131565087707
                 ]
             },
             "properties": {
@@ -1756,7 +1756,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33719",
                 "strasse": "Krähenwinkel 2",
@@ -1782,8 +1782,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.63284813,
-                    51.98599334
+                    8.632848133059989,
+                    51.985993342346404
                 ]
             },
             "properties": {
@@ -1796,7 +1796,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33699",
                 "strasse": "Detmolder Str. 697",
@@ -1822,8 +1822,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50081532,
-                    52.09840746
+                    8.500815317698988,
+                    52.098407458433215
                 ]
             },
             "properties": {
@@ -1836,7 +1836,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33739",
                 "strasse": "Bargholzstr. 32",
@@ -1860,8 +1860,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52237258,
-                    52.0687998
+                    8.522372578007024,
+                    52.06879979761493
                 ]
             },
             "properties": {
@@ -1874,7 +1874,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33739",
                 "strasse": "Theesener Str. 34",
@@ -1898,8 +1898,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55001766,
-                    52.07181265
+                    8.550017661461144,
+                    52.07181264618918
                 ]
             },
             "properties": {
@@ -1912,7 +1912,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33739",
                 "strasse": "Bardenhorst 20",
@@ -1938,8 +1938,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.60761166,
-                    52.01103286
+                    8.60761165637763,
+                    52.01103285807903
                 ]
             },
             "properties": {
@@ -1952,7 +1952,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33719",
                 "strasse": "Krähenwinkel 6",
@@ -1975,8 +1975,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54188123,
-                    52.04568061
+                    8.541881227799268,
+                    52.045680610264675
                 ]
             },
             "properties": {
@@ -1989,7 +1989,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33611",
                 "strasse": "Hamfeldstr. 10",
@@ -2014,8 +2014,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52629573,
-                    52.00547421
+                    8.526295730587858,
+                    52.005474204232925
                 ]
             },
             "properties": {
@@ -2028,7 +2028,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "Maraweg 29",
@@ -2053,8 +2053,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5485099,
-                    51.95649725
+                    8.548509902758054,
+                    51.956497251471646
                 ]
             },
             "properties": {
@@ -2067,7 +2067,7 @@
                 "traeger": "Landschaftsverband Westfalen-Lippe",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "Westkampweg 81",
@@ -2092,8 +2092,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53776915,
-                    52.02731398
+                    8.537769149464177,
+                    52.02731397608644
                 ]
             },
             "properties": {
@@ -2106,7 +2106,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Paulusstr. 9-11",
@@ -2132,8 +2132,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51794022,
-                    52.0292485
+                    8.517940218386377,
+                    52.02924849995403
                 ]
             },
             "properties": {
@@ -2146,7 +2146,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Bossestr. 10",
@@ -2172,8 +2172,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51448112,
-                    52.03101452
+                    8.514481119629435,
+                    52.03101451316022
                 ]
             },
             "properties": {
@@ -2186,7 +2186,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Stapenhorststr. 100",
@@ -2212,8 +2212,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50168891,
-                    51.98454942
+                    8.501688913555048,
+                    51.98454941760272
                 ]
             },
             "properties": {
@@ -2226,7 +2226,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Kölner Str. 40",
@@ -2252,8 +2252,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52792385,
-                    51.96010287
+                    8.52792384959422,
+                    51.960102868619984
                 ]
             },
             "properties": {
@@ -2266,7 +2266,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "Klashofstr. 79",
@@ -2292,8 +2292,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58043925,
-                    51.94234648
+                    8.580439245243646,
+                    51.942346482173434
                 ]
             },
             "properties": {
@@ -2306,7 +2306,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33689",
                 "strasse": "Wintersheide 30",
@@ -2332,8 +2332,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.6006623,
-                    52.0289645
+                    8.600662302200428,
+                    52.02896449495123
                 ]
             },
             "properties": {
@@ -2346,7 +2346,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33719",
                 "strasse": "Alter Postweg 33",
@@ -2372,8 +2372,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51943352,
-                    52.09795436
+                    8.519433516388528,
+                    52.097954355753494
                 ]
             },
             "properties": {
@@ -2386,7 +2386,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33739",
                 "strasse": "Dörpfeldstr. 8",
@@ -2412,8 +2412,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54571905,
-                    52.02669755
+                    8.545719049572163,
+                    52.02669754472191
                 ]
             },
             "properties": {
@@ -2426,7 +2426,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Frachtstr. 8",
@@ -2451,8 +2451,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54325261,
-                    52.05419138
+                    8.54325260933861,
+                    52.054191373384796
                 ]
             },
             "properties": {
@@ -2465,7 +2465,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33611",
                 "strasse": "Apfelstr. 210",
@@ -2491,8 +2491,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54859741,
-                    52.01586547
+                    8.548597409450936,
+                    52.015865469415004
                 ]
             },
             "properties": {
@@ -2505,7 +2505,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33604",
                 "strasse": "Niedermühlenkamp 5",
@@ -2531,8 +2531,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5273521,
-                    52.01859634
+                    8.527352100383947,
+                    52.01859633665222
                 ]
             },
             "properties": {
@@ -2545,7 +2545,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Nebelswall 1",
@@ -2571,8 +2571,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54701749,
-                    52.01791835
+                    8.547017494853476,
+                    52.017918344447885
                 ]
             },
             "properties": {
@@ -2585,7 +2585,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Ravensberger Str. 131",
@@ -2611,8 +2611,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52915677,
-                    52.01881935
+                    8.52915677203227,
+                    52.018819346829275
                 ]
             },
             "properties": {
@@ -2625,7 +2625,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Waldhof 8",
@@ -2651,8 +2651,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54661341,
-                    52.04779381
+                    8.546613407487945,
+                    52.047793804163646
                 ]
             },
             "properties": {
@@ -2665,7 +2665,7 @@
                 "traeger": "Stiftung Marienschule der Ursulinen",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33611",
                 "strasse": "Sieboldstr. 4a",
@@ -2690,8 +2690,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51468978,
-                    52.02924415
+                    8.514689783181673,
+                    52.02924414769147
                 ]
             },
             "properties": {
@@ -2704,7 +2704,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Stapenhorststr. 96",
@@ -2730,8 +2730,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50169939,
-                    51.9836054
+                    8.501699389591154,
+                    51.98360540012733
                 ]
             },
             "properties": {
@@ -2744,7 +2744,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Beckumer Str. 10",
@@ -2770,8 +2770,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5228233,
-                    52.00458806
+                    8.522823301080209,
+                    52.00458806019207
                 ]
             },
             "properties": {
@@ -2784,7 +2784,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "An der Rehwiese 65",
@@ -2809,8 +2809,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58705245,
-                    51.94776452
+                    8.587052447670384,
+                    51.94776452210406
                 ]
             },
             "properties": {
@@ -2823,7 +2823,7 @@
                 "traeger": "Evangelische Kirche von Westfalen",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33689",
                 "strasse": "Elbeallee 75",
@@ -2848,8 +2848,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.60171254,
-                    52.02887814
+                    8.601712542927274,
+                    52.02887814006714
                 ]
             },
             "properties": {
@@ -2862,7 +2862,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33719",
                 "strasse": "Alter Postweg 37",
@@ -2888,8 +2888,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.57846648,
-                    52.0192938
+                    8.578466482562892,
+                    52.019293802378925
                 ]
             },
             "properties": {
@@ -2902,7 +2902,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Brückenstr. 72",
@@ -2927,8 +2927,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5399065,
-                    52.02782584
+                    8.539906497079775,
+                    52.02782583684076
                 ]
             },
             "properties": {
@@ -2941,7 +2941,7 @@
                 "traeger": "Verein zur Förderung und Ausbildung",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "August-Bebel-Str. 57",
@@ -2966,8 +2966,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52205697,
-                    52.00404549
+                    8.522056968994068,
+                    52.004045491869505
                 ]
             },
             "properties": {
@@ -2980,7 +2980,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "Kükenshove 1",
@@ -3005,8 +3005,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51158518,
-                    52.03057098
+                    8.51158518289512,
+                    52.03057097713184
                 ]
             },
             "properties": {
@@ -3019,7 +3019,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Kurt-Schumacher-Str. 45",
@@ -3045,8 +3045,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52284457,
-                    52.032721
+                    8.522844573087259,
+                    52.03272100171571
                 ]
             },
             "properties": {
@@ -3059,7 +3059,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Gutenbergstr. 19",
@@ -3084,8 +3084,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.5055831,
-                    51.99720725
+                    8.505583103478502,
+                    51.99720724969732
                 ]
             },
             "properties": {
@@ -3098,7 +3098,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Schulstr. 84",
@@ -3123,8 +3123,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.49814953,
-                    52.03672729
+                    8.498149527032469,
+                    52.03672729247005
                 ]
             },
             "properties": {
@@ -3137,7 +3137,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Universitätsstr. 23",
@@ -3162,8 +3162,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.49936482,
-                    52.03625594
+                    8.499364815624496,
+                    52.03625593983344
                 ]
             },
             "properties": {
@@ -3176,7 +3176,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Universitätsstr. 21",
@@ -3202,8 +3202,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.50138497,
-                    51.98962808
+                    8.501384968257542,
+                    51.98962808030036
                 ]
             },
             "properties": {
@@ -3216,7 +3216,7 @@
                 "traeger": "Lernhaus Lebenshilfe gGmbH",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "Am Möllerstift 22",
@@ -3241,8 +3241,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55185873,
-                    52.05842318
+                    8.551858730076694,
+                    52.058423181286585
                 ]
             },
             "properties": {
@@ -3255,7 +3255,7 @@
                 "traeger": "Waldorf-Schulverein Bielefeld e.V.",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33611",
                 "strasse": "An der Propstei 23",
@@ -3280,8 +3280,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54683534,
-                    51.95659871
+                    8.546835338504165,
+                    51.95659871194231
                 ]
             },
             "properties": {
@@ -3294,7 +3294,7 @@
                 "traeger": "Landschaftsverband Westfalen-Lippe",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "Westkampweg 79",
@@ -3319,8 +3319,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52711437,
-                    52.03423072
+                    8.527114365847877,
+                    52.034230717863345
                 ]
             },
             "properties": {
@@ -3333,7 +3333,7 @@
                 "traeger": "Landschaftsverband Westfalen-Lippe",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33613",
                 "strasse": "Bökenkampstr. 14",
@@ -3358,8 +3358,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52456192,
-                    52.05222037
+                    8.524561924118059,
+                    52.05222036309056
                 ]
             },
             "properties": {
@@ -3372,7 +3372,7 @@
                 "traeger": "Verein Sonnenhellweg-Schule e.V.",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33613",
                 "strasse": "Benzstr. 1",
@@ -3397,8 +3397,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55300432,
-                    51.92892068
+                    8.553004324427162,
+                    51.92892067607766
                 ]
             },
             "properties": {
@@ -3411,7 +3411,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33689",
                 "strasse": "Schlepperweg 17",
@@ -3436,8 +3436,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.49215253,
-                    52.05776745
+                    8.492152534097748,
+                    52.05776744558786
                 ]
             },
             "properties": {
@@ -3450,7 +3450,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33619",
                 "strasse": "Babenhauser Str. 155a",
@@ -3475,8 +3475,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52849086,
-                    52.00730819
+                    8.528490858071676,
+                    52.00730818832378
                 ]
             },
             "properties": {
@@ -3489,7 +3489,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "Maraweg 19-21",
@@ -3514,8 +3514,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58385699,
-                    52.0006027
+                    8.583856992847624,
+                    52.0006026936536
                 ]
             },
             "properties": {
@@ -3528,7 +3528,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33605",
                 "strasse": "Am Wortkamp 3",
@@ -3554,8 +3554,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52746099,
-                    52.0345378
+                    8.527460994851781,
+                    52.034537801768565
                 ]
             },
             "properties": {
@@ -3568,7 +3568,7 @@
                 "traeger": "Landschaftsverband Westfalen-Lippe",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33613",
                 "strasse": "Bökenkampstr. 17",
@@ -3593,8 +3593,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.47885992,
-                    51.99176036
+                    8.478859917451368,
+                    51.99176035526083
                 ]
             },
             "properties": {
@@ -3607,7 +3607,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33649",
                 "strasse": "Marienfelder Str. 81",
@@ -3633,8 +3633,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55157574,
-                    52.02258413
+                    8.551575737802263,
+                    52.02258412598812
                 ]
             },
             "properties": {
@@ -3647,7 +3647,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Heeper Str. 85",
@@ -3672,8 +3672,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52900641,
-                    51.98456293
+                    8.529006407487296,
+                    51.98456292469977
                 ]
             },
             "properties": {
@@ -3686,7 +3686,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "An der Rosenhöhe 11",
@@ -3711,8 +3711,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.49936482,
-                    52.03625594
+                    8.499364815624496,
+                    52.03625593983344
                 ]
             },
             "properties": {
@@ -3725,7 +3725,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33615",
                 "strasse": "Universitätsstr. 21",
@@ -3751,8 +3751,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.58202425,
-                    51.9924953
+                    8.582024246649938,
+                    51.992495294505154
                 ]
             },
             "properties": {
@@ -3765,7 +3765,7 @@
                 "traeger": "Trägerverein der Evangelikalen",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33605",
                 "strasse": "Lipper Hellweg 230",
@@ -3790,8 +3790,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.54916089,
-                    52.02214334
+                    8.54916089040027,
+                    52.02214334269412
                 ]
             },
             "properties": {
@@ -3804,7 +3804,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Hermann-Delius-Str. 4",
@@ -3829,8 +3829,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55353456,
-                    52.0234547
+                    8.553534555664452,
+                    52.02345469996215
                 ]
             },
             "properties": {
@@ -3843,7 +3843,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Huberstr. 40",
@@ -3868,8 +3868,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52691322,
-                    51.98421288
+                    8.526913219753332,
+                    51.98421287546013
                 ]
             },
             "properties": {
@@ -3882,7 +3882,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "An der Rosenhöhe 5",
@@ -3907,8 +3907,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55190203,
-                    52.02347548
+                    8.551902031805838,
+                    52.023475475393106
                 ]
             },
             "properties": {
@@ -3921,7 +3921,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33607",
                 "strasse": "Bleichstr. 12",
@@ -3946,8 +3946,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56784794,
-                    52.00212747
+                    8.56784794270564,
+                    52.00212746968536
                 ]
             },
             "properties": {
@@ -3960,7 +3960,7 @@
                 "traeger": "Trägerverein der Evangelikalen",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33605",
                 "strasse": "Detmolder Str. 284",
@@ -3985,8 +3985,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.48794144,
-                    51.98593802
+                    8.487941441974783,
+                    51.985938013287154
                 ]
             },
             "properties": {
@@ -3999,7 +3999,7 @@
                 "traeger": "Montessori Schule Bielefeld gGmbH",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33649",
                 "strasse": "Mülheimer Str. 18",
@@ -4024,8 +4024,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53282805,
-                    52.09302724
+                    8.5328280466331,
+                    52.09302724208645
                 ]
             },
             "properties": {
@@ -4038,7 +4038,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33739",
                 "strasse": "Am Waldschlößchen 66",
@@ -4062,8 +4062,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53024146,
-                    51.98481961
+                    8.530241461259186,
+                    51.98481960664402
                 ]
             },
             "properties": {
@@ -4076,7 +4076,7 @@
                 "traeger": "Stadt Bielefeld",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33647",
                 "strasse": "An der Rosenhöhe 15",
@@ -4102,8 +4102,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.56784794,
-                    52.00212747
+                    8.56784794270564,
+                    52.00212746968536
                 ]
             },
             "properties": {
@@ -4116,7 +4116,7 @@
                 "traeger": "Trägerverein der Evangelikalen",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33605",
                 "strasse": "Detmolder Str. 284",
@@ -4141,8 +4141,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.51109217,
-                    51.94073027
+                    8.51109216744035,
+                    51.94073026800059
                 ]
             },
             "properties": {
@@ -4155,7 +4155,7 @@
                 "traeger": "Trägerverein der Evangelikalen",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33659",
                 "strasse": "Buschkampstr. 273",
@@ -4180,8 +4180,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.55011188,
-                    52.01741772
+                    8.55011187721577,
+                    52.017417714390355
                 ]
             },
             "properties": {
@@ -4194,7 +4194,7 @@
                 "traeger": "Lernhaus Lebenshilfe gGmbH",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33604",
                 "strasse": "Am Niedermühlenhof 1",
@@ -4219,8 +4219,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53994737,
-                    52.01958126
+                    8.539947367329782,
+                    52.019581256558574
                 ]
             },
             "properties": {
@@ -4233,7 +4233,7 @@
                 "traeger": "Heinz Hunger Berufskolleg gGmbH",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "August-Bebel-Str. 135-145",
@@ -4258,8 +4258,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52274543,
-                    52.00643091
+                    8.52274542718309,
+                    52.0064309049082
                 ]
             },
             "properties": {
@@ -4272,7 +4272,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "Quellenhofweg 44",
@@ -4297,8 +4297,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.52693356,
-                    52.01130295
+                    8.526933558147565,
+                    52.01130294803507
                 ]
             },
             "properties": {
@@ -4311,7 +4311,7 @@
                 "traeger": "v. Bodelschwinghsche Stiftungen Bethel",
                 "rechtsform_code": "2",
                 "rechtsform": "privat",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33617",
                 "strasse": "Am Zionswald 12",
@@ -4336,8 +4336,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53484852,
-                    52.02503675
+                    8.534848521498004,
+                    52.02503675265064
                 ]
             },
             "properties": {
@@ -4350,7 +4350,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Herforder Str. 14",
@@ -4374,8 +4374,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53484852,
-                    52.02503675
+                    8.534848521498004,
+                    52.02503675265064
                 ]
             },
             "properties": {
@@ -4388,7 +4388,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Herforder Str. 14",
@@ -4411,8 +4411,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53484852,
-                    52.02503675
+                    8.534848521498004,
+                    52.02503675265064
                 ]
             },
             "properties": {
@@ -4425,7 +4425,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Herforder Str. 14",
@@ -4448,8 +4448,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53484852,
-                    52.02503675
+                    8.534848521498004,
+                    52.02503675265064
                 ]
             },
             "properties": {
@@ -4462,7 +4462,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Herforder Str. 14",
@@ -4485,8 +4485,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53484852,
-                    52.02503675
+                    8.534848521498004,
+                    52.02503675265064
                 ]
             },
             "properties": {
@@ -4499,7 +4499,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Herforder Str. 14",
@@ -4522,8 +4522,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53484852,
-                    52.02503675
+                    8.534848521498004,
+                    52.02503675265064
                 ]
             },
             "properties": {
@@ -4536,7 +4536,7 @@
                 "traeger": "Land Nordrhein-Westfalen",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Herforder Str. 14",
@@ -4559,8 +4559,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    8.53701478,
-                    52.0227346
+                    8.537014784829756,
+                    52.022734599792656
                 ]
             },
             "properties": {
@@ -4572,7 +4572,7 @@
                 "schulform": "Andere Schule",
                 "rechtsform_code": "1",
                 "rechtsform": "öffentlich",
-                "regbezirk": "7",
+                "regbezirk": "Bezirksregierung Detmold",
                 "ort": "Bielefeld",
                 "plz": "33602",
                 "strasse": "Turnerstr. 5-9",
