@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Über – Schulkarte Bielefeld</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../shared/css/tachyons.min.css">
+  <link rel="stylesheet" href="../shared/css/styles.css">
+</head>
+
+<body style="min-height:100dvh;background:var(--bg);display:flex;flex-direction:column;">
+
+  <!-- TOP NAV -->
+  <nav id="topNav">
+    <div class="topnav-left">
+      <a href="index.html" class="topnav-home">
+        <span class="topnav-dot"></span>
+        <span class="topnav-title">Schulkarte Bielefeld</span>
+      </a>
+    </div>
+    <div class="topnav-right">
+      <a href="auswahl.html" class="topnav-btn">Auswahl</a>
+      <a href="schulinfo.html" class="topnav-btn">Schulinfo</a>
+      <a href="ueber.html" class="topnav-btn topnav-btn--active">Über</a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main style="flex:1;max-width:760px;width:100%;margin:0 auto;padding:40px 24px;">
+
+    <div style="margin-bottom:32px;">
+      <div class="section-title">Schulkarte Bielefeld</div>
+      <h1 style="font-size:1.5rem;font-weight:600;color:var(--text);
+                 letter-spacing:-0.02em;margin:4px 0 8px;">Über diese Karte</h1>
+      <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0;">
+        Hintergründe zu Datenquellen, Methodik und dem Projekt.
+      </p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:24px;">
+        <div class="info-label" style="margin-bottom:8px;">Datengrundlage</div>
+        <div style="font-size:0.85rem;color:var(--text);line-height:1.7;">
+          Die Schuldaten stammen aus dem Open-Data-Angebot des Ministeriums für
+          Schule und Bildung NRW (MSB) und werden unter der Lizenz
+          <span style="font-family:'DM Mono',monospace;font-size:0.78rem;">dl-de/by-2-0</span>
+          bereitgestellt. Koordinaten und weitere Metadaten wurden maschinell ergänzt.
+        </div>
+      </div>
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:24px;">
+        <div class="info-label" style="margin-bottom:8px;">Methodik</div>
+        <div style="font-size:0.85rem;color:var(--text);line-height:1.7;">
+          Schulformen wurden über ein einheitliches Schema normalisiert.
+          Detaillierte Informationen zur Transformation und Datenaufbereitung
+          folgen hier.
+        </div>
+      </div>
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:24px;">
+        <div class="info-label" style="margin-bottom:8px;">Projekt</div>
+        <div style="font-size:0.85rem;color:var(--text);line-height:1.7;">
+          Informationen zum Projekt, den Urhebern und Kontaktmöglichkeiten
+          folgen hier.
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

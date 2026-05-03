@@ -5,16 +5,16 @@
 // Canonical schulform list (readme.md).
 // Drives school type filter chips and marker colors.
 const SCHULFORMEN = [
-  { value: 'Grundschule',    label: 'Grundschule',    color: 'var(--color-grundschule)'    },
-  { value: 'Gymnasium',      label: 'Gymnasium',      color: 'var(--color-gymnasium)'      },
-  { value: 'Gesamtschule',   label: 'Gesamtschule',   color: 'var(--color-gesamtschule)'   },
-  { value: 'Hauptschule',    label: 'Hauptschule',    color: 'var(--color-hauptschule)'    },
-  { value: 'Realschule',     label: 'Realschule',     color: 'var(--color-realschule)'     },
-  { value: 'Sekundarschule', label: 'Sekundarschule', color: 'var(--color-sekundarschule)' },
-  { value: 'Förderschule',   label: 'Förderschule',   color: 'var(--color-foerderschule)'  },
-  { value: 'Berufsschule',   label: 'Berufsschule',   color: 'var(--color-berufsschule)'   },
-  { value: 'Freie Schule',   label: 'Freie Schule',   color: 'var(--color-freie-schule)'   },
-  { value: 'Andere Schule',  label: 'Andere Schule',  color: 'var(--color-andere)'         },
+  { value: 'Grundschule',    label: 'Grundschule',    color: '#2563eb' },
+  { value: 'Gymnasium',      label: 'Gymnasium',      color: '#7c3aed' },
+  { value: 'Gesamtschule',   label: 'Gesamtschule',   color: '#059669' },
+  { value: 'Hauptschule',    label: 'Hauptschule',    color: '#0d9488' },
+  { value: 'Realschule',     label: 'Realschule',     color: '#0891b2' },
+  { value: 'Sekundarschule', label: 'Sekundarschule', color: '#047857' },
+  { value: 'Förderschule',   label: 'Förderschule',   color: '#db2777' },
+  { value: 'Berufsschule',   label: 'Berufsschule',   color: '#d97706' },
+  { value: 'Freie Schule',   label: 'Freie Schule',   color: '#7c3aed' },
+  { value: 'Andere Schule',  label: 'Andere Schule',  color: '#71717a' },
 ];
 
 // Carrier filter. Values match the `rechtsform` field in the unified schema.
@@ -35,22 +35,125 @@ const SCHOOLS_FILE = 'data/schulen.geojson';
 // INIT MAP
 // ==============================
 
-// Start with a neutral view; setView() is called again once meta is loaded.
-const map = L.map('map', { zoomControl: true })
-             .setView([51.0, 10.0], 6);
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://tiles.openfreemap.org/styles/positron',
+  center: [10.0, 51.0],
+  zoom: 6,
+  attributionControl: true,
+});
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  maxZoom: 20
-}).addTo(map);
+let mapReady = false;
+map.on('load', () => {
+  mapReady = true;
+  // Add sources and layers for schools and zones
+  map.addSource('schools', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+  map.addSource('zones',   { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+
+  // Zone fill
+  map.addLayer({ id: 'zone-fill', type: 'fill', source: 'zones',
+    paint: { 'fill-color': '#64748b', 'fill-opacity': 0.06 } });
+  // Zone outline
+  map.addLayer({ id: 'zone-line', type: 'line', source: 'zones',
+    paint: { 'line-color': '#94a3b8', 'line-width': 1.2 } });
+  // Zone active fill
+  map.addLayer({ id: 'zone-fill-active', type: 'fill', source: 'zones',
+    filter: ['==', ['get', '_active'], true],
+    paint: { 'fill-color': '#dc2626', 'fill-opacity': 0.12 } });
+  // Zone active outline
+  map.addLayer({ id: 'zone-line-active', type: 'line', source: 'zones',
+    filter: ['==', ['get', '_active'], true],
+    paint: { 'line-color': '#dc2626', 'line-width': 2.5 } });
+
+  // School circles (dim)
+  map.addLayer({ id: 'schools-dim', type: 'circle', source: 'schools',
+    filter: ['==', ['get', '_highlighted'], false],
+    paint: {
+      'circle-radius': 4,
+      'circle-color': ['get', '_color'],
+      'circle-opacity': 0.2,
+      'circle-stroke-width': 0,
+    }
+  });
+
+  // School circles (normal)
+  map.addLayer({ id: 'schools-main', type: 'circle', source: 'schools',
+    filter: ['==', ['get', '_highlighted'], true],
+    paint: {
+      'circle-radius': ['case', ['get', '_marked'], 8, 6],
+      'circle-color': ['get', '_color'],
+      'circle-opacity': 0.95,
+      'circle-stroke-width': ['case', ['get', '_marked'], 2.5, 1.5],
+      'circle-stroke-color': ['case', ['get', '_marked'], '#d97706', '#ffffff'],
+    }
+  });
+
+  // Hover tooltip
+  const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 8 });
+
+  map.on('mouseenter', 'schools-main', e => {
+    map.getCanvas().style.cursor = 'pointer';
+    const p = e.features[0].properties;
+    popup.setLngLat(e.lngLat)
+      .setHTML(`<strong>${p.schulname}</strong>${p._marked ? ' ★' : ''}<br><span style="color:#666;font-size:11px">${p.schulform}</span>`)
+      .addTo(map);
+    map.setPaintProperty('schools-main', 'circle-radius',
+      ['case', ['==', ['get', 'id'], p.id], ['case', ['get', '_marked'], 11, 9],
+               ['case', ['get', '_marked'], 8, 6]]);
+  });
+  map.on('mouseleave', 'schools-main', () => {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
+    map.setPaintProperty('schools-main', 'circle-radius',
+      ['case', ['get', '_marked'], 8, 6]);
+  });
+
+  // Click school
+  map.on('click', 'schools-main', e => {
+    const id = e.features[0].properties.id;
+    const school = allSchools.find(s => s.id === id);
+    if (school) openOverlay(school);
+  });
+  map.on('click', 'schools-dim', e => {
+    const id = e.features[0].properties.id;
+    const school = allSchools.find(s => s.id === id);
+    if (school) openOverlay(school);
+  });
+
+  // Click zone
+  map.on('click', 'zone-fill', e => {
+    const feature = e.features[0];
+    closeOverlay();
+    const src = map.getSource('zones');
+    const current = src._data;
+    const wasActive = feature.properties._active;
+    // deactivate all, then toggle
+    current.features.forEach(f => f.properties._active = false);
+    if (!wasActive) {
+      feature.properties._active = true;
+      const match = current.features.find(f => f.properties === feature.properties);
+      if (match) match.properties._active = true;
+      highlightSchoolsForZone(feature);
+    } else {
+      renderSchools();
+    }
+    src.setData(current);
+  });
+
+  // Click map background — close overlay
+  map.on('click', e => {
+    const fs = map.queryRenderedFeatures(e.point, { layers: ['schools-main', 'schools-dim', 'zone-fill'] });
+    if (!fs.length) closeOverlay();
+  });
+
+  // Now load data if already fetched
+  if (allSchools.length) renderSchools();
+});
 
 // ==============================
 // STATE
 // ==============================
 
-let zoneLayer            = null;
-let schoolLayer          = null;
-let activeZoneLayer      = null;
 let allSchools           = [];
 let currentSearchTerm    = '';
 let showOnlyWatchlist    = false;
@@ -188,8 +291,12 @@ function importWatchlist(file) {
       }
 
       saveWatchlist(cleaned);
-      renderSchools();
+      if (allSchools.length) renderSchools();
       updateWatchlistBadge();
+
+      // reset so the same file can be re-imported
+      const inp = document.getElementById('importWatchlistInput');
+      if (inp) inp.value = '';
 
     } catch (err) {
       console.error(err);
@@ -253,12 +360,11 @@ function toggleBookmark(s) {
 
 function updateWatchlistBadge() {
   const badge = document.getElementById('watchlistBadge');
-  if (!badge) return;
-
-  const wl = loadWatchlist();
-  const count = Object.values(wl).filter(e => e.bookmarked).length;
-
-  badge.textContent = count;
+  if (badge) {
+    const count = Object.values(loadWatchlist()).filter(e => e.bookmarked).length;
+    badge.textContent = count;
+  }
+  updateNavBadge();
 }
 
 function toggleWatchlistFilter() {
@@ -314,89 +420,193 @@ document.addEventListener('input', e => {
   saveWatchlist(wl);
 });
 
+
 // ==============================
 // SCHOOL OVERLAY
 // ==============================
 
+// Human-readable labels for eigenschaften tags
+const EIGENSCHAFT_LABELS = {
+  jahrgangsuebergreifend:    'Jahrgangsübergreifend',
+  schuleingangsphase:        'Schuleingangsphase',
+  gebundener_ganztag:        'Gebundener Ganztag',
+  offener_ganztag:           'Offener Ganztag',
+  lernzeiten:                'Lernzeiten',
+  begabtenfoerderung:        'Begabtenförderung',
+  bilingual:                 'Bilingual',
+  inklusion:                 'Inklusion',
+  projektorientiert:         'Projektorientiert',
+  individualisiertes_lernen: 'Individualisiertes Lernen',
+  digitale_bildung:          'Digitale Bildung',
+  berufsorientierung:        'Berufsorientierung',
+  sport:                     'Sport',
+  musik:                     'Musik',
+  kunst:                     'Kunst',
+  theater:                   'Theater',
+  tanz:                      'Tanz',
+  mint:                      'MINT',
+  bne:                       'BNE',
+  fremdsprachenprofil:       'Fremdsprachenprofil',
+};
+
+// Helper: read a field with optional fallback key
+function getValue(obj, key, fallback) {
+  const v = obj[key];
+  if (v !== null && v !== undefined && v !== '') return v;
+  if (fallback) {
+    const fb = obj[fallback];
+    if (fb !== null && fb !== undefined && fb !== '') return fb;
+  }
+  return null;
+}
+
+const OVERLAY_CONFIG = [
+  {
+    type: 'grid',
+    columns: 2,
+    fields: [
+      { key: 'id', label: 'ID' },
+      { key: 'traeger', label: 'Träger' },
+      { key: 'bezirk', label: 'Bezirk' },
+      { key: 'ortsteil', label: 'Ortsteil' }
+    ]
+  },
+
+  {
+    type: 'grid',
+    columns: 2,
+    fields: [
+      { key: 'schuelerzahl', fallback: 'schueler', label: 'Schüler:innen' },
+      { key: 'lehrkraefte', label: 'Lehrkräfte' },
+      { key: 'betreuungspersonal', label: 'Personal' },
+      { key: 'klassengroesse_avg', label: 'Ø Klassengröße' },
+      { key: 'gymnasialquote', label: 'Gymnasialquote' },
+      { key: 'sozialindex', fallback: 'sozialindexstufe', label: 'Sozialindex' }
+    ]
+  },
+
+  {
+    type: 'tags',
+    key: 'eigenschaften',
+    label: 'Profil'
+  }
+];
+
 function openOverlay(s) {
   currentOverlaySchool = s;
+
   const saved = isBookmarked(s.id);
 
-  document.getElementById('overlayDot').style.background = getSchoolColor(s.schulform);
-  document.getElementById('overlayName').textContent      = s.schulname;
-  document.getElementById('overlayType').textContent      = s.schulform;
-  document.getElementById('overlayBsn').textContent       = s.id || '–';
-  document.getElementById('overlayCarrier').textContent   = s.traeger || s.rechtsform || '–';
-  document.getElementById('overlayDistrict').textContent  = s.specific?.bezirk  || s.ort || '–';
-  document.getElementById('overlayPart').textContent      = s.specific?.ortsteil || '–';
-  document.getElementById('overlayAddr').textContent      =
-    [s.strasse, s.plz ? `${s.plz} ${s.ort || ''}`.trim() : ''].filter(Boolean).join(', ') || '–';
+  document.getElementById('overlayName').textContent = s.schulname;
+  document.getElementById('overlayType').textContent = s.schulform;
 
   const bBtn = document.getElementById('overlayBookmarkBtn');
   bBtn.className = 'bookmark-btn' + (saved ? ' saved' : '');
   bBtn.innerHTML = bookmarkBtnInner(saved);
-
-  const links = [];
-  const phone = [s.telefon_vorwahl, s.telefon].filter(Boolean).join(' ');
-  if (phone)     links.push(`<span class="overlay-link">📞 ${phone}</span>`);
-  if (s.email)   links.push(`<a class="overlay-link" href="mailto:${s.email}">✉️ ${s.email}</a>`);
-  if (s.internet) links.push(`<a class="overlay-link accent" href="${s.internet}" target="_blank" rel="noopener">↗ Website</a>`);
-  document.getElementById('overlayFooter').innerHTML = links.join('');
 
   const overlay = document.getElementById('schoolOverlay');
   overlay.classList.remove('dn');
   overlay.classList.add('db');
 
   const wl = loadWatchlist();
-  const entry = wl[s.id];
+  document.getElementById('overlayNote').value = wl[s.id]?.note || '';
 
-  document.getElementById('overlayNote').value = entry?.note || '';
-
-  renderSpecificFields(s);
+  renderOverlayHeader(s);
+  renderOverlay(s);
 }
 
-function renderSpecificFields(s) {
-  const container = document.getElementById('overlaySpecific');
-  if (!container) return;
+function renderOverlay(s) {
+  // ── Stats grid ────────────────────────────────────────────────
+  const gridEl = document.getElementById('overlayGrid');
+  if (gridEl) {
+    const GRID_FIELDS = [
+      { key: 'id',                label: 'ID'              },
+      { key: 'traeger',           label: 'Träger'          },
+      { key: 'rechtsform',        label: 'Rechtsform'      },
+      { key: 'betrieb_seit',      label: 'In Betrieb seit' },
+      { key: 'bezirk',            label: 'Bezirk'          },
+      { key: 'ortsteil',          label: 'Ortsteil'        },
+      { key: 'schuelerzahl',      fallback: 'schueler',        label: 'Schüler:innen'   },
+      { key: 'lehrkraefte',                                    label: 'Lehrkräfte'      },
+      { key: 'betreuungspersonal',                             label: 'Personal'        },
+      { key: 'klassengroesse_avg',                             label: 'Ø Klassengröße'  },
+      { key: 'gymnasialquote',                                 label: 'Gymnasialquote'  },
+      { key: 'sozialindex',       fallback: 'sozialindexstufe',label: 'Sozialindex'     },
+    ];
 
-  const spec = s.specific || {};
-  const entries = Object.entries(spec);
-
-  if (!entries.length) {
-    container.innerHTML = '';
-    return;
-  }
-
-  container.innerHTML = `
-    <div class="flex flex-column" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      ${entries.map(([key, value]) => `
+    const cells = GRID_FIELDS.map(f => {
+      const value = getValue(s, f.key, f.fallback);
+      if (value === null || value === undefined || value === '') return '';
+      return `
         <div>
-          <div class="info-label">
-            ${key}
-          </div>
+          <div class="info-label">${f.label}</div>
           <div class="f7" style="font-family:'DM Mono',monospace;color:var(--text-secondary);">
-            ${formatSpecificValue(value)}
+            ${Array.isArray(value) ? value.join(', ') : value}
           </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
+        </div>`;
+    }).filter(Boolean).join('');
+
+    gridEl.innerHTML = cells;
+  }
+
+  // ── Eigenschaften tags ────────────────────────────────────────
+  const tagsEl = document.getElementById('overlayTags');
+  if (tagsEl) {
+    const list = Array.isArray(s.eigenschaften) ? s.eigenschaften.filter(Boolean) : [];
+    if (list.length) {
+      tagsEl.innerHTML = `
+        <div class="info-label">Profil</div>
+        <div class="flex flex-wrap" style="gap:6px;margin-top:6px;">
+          ${list.map(e => `
+            <span style="font-size:11px;padding:4px 8px;border-radius:999px;
+                         background:var(--chip-bg);border:1px solid var(--border);
+                         color:var(--text-secondary);white-space:nowrap;">
+              ${EIGENSCHAFT_LABELS[e] || e}
+            </span>`).join('')}
+        </div>`;
+    } else {
+      tagsEl.innerHTML = '';
+    }
+  }
 }
 
-function formatSpecificValue(value) {
-  if (Array.isArray(value)) {
-    return value.join(', ');
+function renderOverlayHeader(s) {
+  // Dot color
+  const dot = document.getElementById('overlayDot');
+  if (dot) dot.style.background = getSchoolColor(s.schulform);
+
+  // Contact sub-header — address · phone · email · website
+  const contact = document.getElementById('overlayContact');
+  if (!contact) return;
+
+  const items = [];
+
+  // Address
+  const addrParts = [];
+  if (s.strasse) addrParts.push(s.strasse);
+  if (s.plz || s.ort) addrParts.push(`${s.plz || ''} ${s.ort || ''}`.trim());
+  if (addrParts.length) {
+    items.push(`<span class="overlay-contact-item">📍 ${addrParts.join(', ')}</span>`);
   }
 
-  if (typeof value === 'boolean') {
-    return value ? 'Ja' : 'Nein';
+  // Phone
+  const phone = [s.telefon_vorwahl, s.telefon].filter(Boolean).join(' ');
+  if (phone) {
+    items.push(`<a href="tel:${phone.replace(/\s/g,'')}" class="overlay-contact-item overlay-contact-link">📞 ${phone}</a>`);
   }
 
-  if (value === null || value === undefined || value === '') {
-    return '–';
+  // Email
+  if (s.email) {
+    items.push(`<a href="mailto:${s.email}" class="overlay-contact-item overlay-contact-link">✉ ${s.email}</a>`);
   }
 
-  return value;
+  // Website
+  if (s.internet) {
+    const url = s.internet.startsWith('http') ? s.internet : `https://${s.internet}`;
+    items.push(`<a href="${url}" target="_blank" rel="noopener" class="overlay-contact-item overlay-contact-link">↗ Website</a>`);
+  }
+
+  contact.innerHTML = items.join('');
 }
 
 function closeOverlay() {
@@ -415,8 +625,6 @@ function overlayToggleBookmark() {
   bBtn.innerHTML = bookmarkBtnInner(saved);
 }
 
-map.on('click', closeOverlay);
-
 // ==============================
 // COLORS
 // ==============================
@@ -424,16 +632,8 @@ map.on('click', closeOverlay);
 const TYPE_COLORS = Object.fromEntries(SCHULFORMEN.map(sf => [sf.value, sf.color]));
 
 function getSchoolColor(schulform) {
-  return TYPE_COLORS[schulform] || 'var(--color-andere)';
+  return TYPE_COLORS[schulform] || '#71717a';
 }
-
-// ==============================
-// ZONE STYLES
-// ==============================
-
-const zoneStyleDefault = () => ({ color: '#94a3b8', weight: 1.2, fillColor: '#64748b', fillOpacity: 0.06 });
-const zoneStyleHover   = () => ({ color: '#2563eb', weight: 2.5, fillColor: '#2563eb', fillOpacity: 0.14 });
-const zoneStyleActive  = () => ({ color: '#dc2626', weight: 2.5, fillColor: '#dc2626', fillOpacity: 0.12 });
 
 // ==============================
 // LOAD SCHOOLS
@@ -452,13 +652,15 @@ async function loadSchools() {
 
   STORAGE_KEY = `schulkarte_watchlist_${citySlug}`;
 
-  if (meta.lat && meta.lng) map.setView([meta.lat, meta.lng], meta.zoom ?? 13);
+  if (meta.lat && meta.lng) map.flyTo({ center: [meta.lng, meta.lat], zoom: meta.zoom ?? 13 });
 
   if (meta.city) {
     const cityLabel = `Schulkarte ${meta.city}`;
     document.title = cityLabel;
     const h1 = document.getElementById('sidebarTitle');
     if (h1) h1.textContent = cityLabel;
+    const navTitle = document.getElementById('topNavTitle');
+    if (navTitle) navTitle.textContent = cityLabel;
   }
 
   allSchools = data.features.map(f => ({
@@ -483,36 +685,13 @@ async function loadZones(file) {
   try {
     const res  = await fetch(file);
     const data = await res.json();
-
-    if (zoneLayer)       { map.removeLayer(zoneLayer); zoneLayer = null; }
-    if (activeZoneLayer) { map.removeLayer(activeZoneLayer); activeZoneLayer = null; }
-
-    zoneLayer = L.geoJSON(data, {
-      style: zoneStyleDefault,
-      onEachFeature: (feature, layer) => {
-        layer.on('mouseover', function () {
-          if (activeZoneLayer !== layer) layer.setStyle(zoneStyleHover());
-          layer.bringToFront();
-        });
-        layer.on('mouseout', function () {
-          if (activeZoneLayer !== layer) layer.setStyle(zoneStyleDefault());
-        });
-        layer.on('click', function (e) {
-          L.DomEvent.stopPropagation(e);
-          closeOverlay();
-          if (activeZoneLayer === layer) {
-            activeZoneLayer.setStyle(zoneStyleDefault());
-            activeZoneLayer = null;
-            renderSchools();
-            return;
-          }
-          if (activeZoneLayer) activeZoneLayer.setStyle(zoneStyleDefault());
-          activeZoneLayer = layer;
-          layer.setStyle(zoneStyleActive());
-          highlightSchoolsForZone(feature);
-        });
-      }
-    }).addTo(map);
+    // reset _active flag on all features
+    data.features.forEach(f => { f.properties._active = false; });
+    if (mapReady) {
+      map.getSource('zones').setData(data);
+    } else {
+      map.once('load', () => map.getSource('zones').setData(data));
+    }
   } catch (err) {
     console.warn('Zone layer could not be loaded:', file, err);
   }
@@ -523,61 +702,40 @@ async function loadZones(file) {
 // ==============================
 
 function renderSchools(highlightedIds = null) {
-  if (schoolLayer) { map.removeLayer(schoolLayer); schoolLayer = null; }
+  if (!mapReady) return;
 
   const selectedTypes    = getSelectedSchoolTypes();
   const selectedCarriers = getSelectedCarriers();
   const search           = currentSearchTerm.toLowerCase().trim();
   const wl               = loadWatchlist();
-  const markers          = [];
+
+  const features = [];
 
   allSchools.forEach(s => {
     if (!selectedTypes.includes(s.schulform)) return;
     if (selectedCarriers.length > 0 && !selectedCarriers.includes(s.rechtsform)) return;
     if (search && !`${s.schulname} ${s.schulform} ${s.schulform_raw}`.toLowerCase().includes(search)) return;
     if (showOnlyWatchlist && !wl[s.id]?.bookmarked) return;
-    
-    const color         = getSchoolColor(s.schulform);
+
     const isHighlighted = highlightedIds === null || highlightedIds.has(s.id);
     const isMarked      = !!wl[s.id]?.bookmarked;
-    const opacity       = isHighlighted ? 0.95 : 0.2;
-    const radius        = isHighlighted ? (isMarked ? 8 : 6) : 4;
 
-    const marker = L.circleMarker([s.lat, s.lng], {
-      radius,
-      color:       isMarked && isHighlighted ? '#d97706' : (isHighlighted ? '#ffffff' : 'transparent'),
-      weight:      isMarked && isHighlighted ? 2.5 : (isHighlighted ? 1.5 : 0),
-      fillColor:   color,
-      fillOpacity: opacity,
-      pane:        isHighlighted ? 'markerPane' : 'shadowPane'
+    features.push({
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [s.lng, s.lat] },
+      properties: {
+        id:            s.id,
+        schulname:     s.schulname,
+        schulform:     s.schulform,
+        _color:        getSchoolColor(s.schulform),
+        _highlighted:  isHighlighted,
+        _marked:       isMarked,
+      }
     });
-
-    marker.on('click', function (e) {
-      L.DomEvent.stopPropagation(e);
-      openOverlay(s);
-    });
-
-    marker.on('mouseover', function () {
-      this.setStyle({ radius: radius + 3, weight: 2.5, fillOpacity: 1 });
-      this.bindTooltip(
-        `<strong>${s.schulname}</strong>${isMarked ? ' ★' : ''}<br><span style="color:#666">${s.schulform}</span>`,
-        { direction: 'top', offset: [0, -6] }
-      ).openTooltip();
-    });
-
-    marker.on('mouseout', function () {
-      this.setStyle({
-        radius,
-        weight:      isMarked && isHighlighted ? 2.5 : (isHighlighted ? 1.5 : 0),
-        fillOpacity: opacity
-      });
-    });
-
-    markers.push(marker);
   });
 
-  schoolLayer = L.layerGroup(markers).addTo(map);
-  updateResultCount(markers.length);
+  map.getSource('schools').setData({ type: 'FeatureCollection', features });
+  updateResultCount(features.length);
 }
 
 // ==============================
@@ -687,11 +845,15 @@ function buildZoneButtons() {
 function injectLicense(meta) {
   if (!meta.lizenzhinweis) return;
 
-  const sidebar = document.getElementById('ownerFilters').closest('.mb3');
+  // avoid injecting twice on hot-reloads
+  if (document.getElementById('licenseBlock')) return;
 
-  sidebar.insertAdjacentHTML('afterend', `
+  const anchor = document.getElementById('ownerFilters')?.closest('.mb3');
+  if (!anchor) return;
+
+  anchor.insertAdjacentHTML('afterend', `
     <div class="divider"></div>
-    <div class="mb3">
+    <div class="mb3" id="licenseBlock">
       <div class="section-title">Datenlizenzen</div>
       <div class="f7" style="color:var(--text-muted);line-height:1.5;">
         ${meta.lizenzhinweis}
@@ -736,15 +898,15 @@ function initMappingInfo(meta) {
 // EVENTS
 // ==============================
 
-document.getElementById('schoolFilters').addEventListener('change', () => {
+document.getElementById('schoolFilters')?.addEventListener('change', () => {
   syncChipStates(); renderSchools();
 });
 
-document.getElementById('ownerFilters').addEventListener('change', () => {
+document.getElementById('ownerFilters')?.addEventListener('change', () => {
   syncChipStates(); renderSchools();
 });
 
-document.getElementById('searchInput').addEventListener('input', e => {
+document.getElementById('searchInput')?.addEventListener('input', e => {
   currentSearchTerm = e.target.value;
   renderSchools();
 });
@@ -762,3 +924,17 @@ if (defaultZone) loadZones(defaultZone.file);
 
 loadSchools();
 updateWatchlistBadge();
+
+// ==============================
+// TOP NAV BADGE
+// ==============================
+
+function updateNavBadge() {
+  const badge = document.getElementById('navBadge');
+  if (!badge) return;
+  const count = Object.values(loadWatchlist()).filter(e => e.bookmarked).length;
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'inline-flex' : 'none';
+}
+
+updateNavBadge();

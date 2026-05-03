@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auswahl – Schulkarte Bielefeld</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../shared/css/tachyons.min.css">
+  <link rel="stylesheet" href="../shared/css/styles.css">
+  <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet">
+  <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+</head>
+
+
+<body style="min-height:100dvh;background:var(--bg);display:flex;flex-direction:column;">
+
+  <!-- TOP NAV -->
+  <nav id="topNav">
+    <div class="topnav-left">
+      <a href="index.html" class="topnav-home">
+        <span class="topnav-dot"></span>
+        <span class="topnav-title">Schulkarte Bielefeld</span>
+      </a>
+    </div>
+    <div class="topnav-right">
+      <a href="auswahl.html" class="topnav-btn topnav-btn--active">Auswahl</a>
+      <a href="schulinfo.html" class="topnav-btn">Schulinfo</a>
+      <a href="ueber.html" class="topnav-btn">Über</a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="flex-auto center w-100 pa4" style="max-width:800px;">
+
+    <div class="flex items-start justify-between flex-wrap mb4" style="gap:12px;">
+      <div>
+        <div class="section-title">Schulkarte Bielefeld</div>
+        <h1 class="f4 fw6 mt1 mb1" style="color:var(--text);letter-spacing:-0.02em;">Meine Auswahl</h1>
+        <p id="subtitle" class="f7 mt0 mb0" style="color:var(--text-muted);"></p>
+      </div>
+      <div class="flex items-center no-print" style="gap:8px;">
+        <a href="index.html" class="f7 no-underline" style="color:var(--text-muted);">← Zur Karte</a>
+        <button onclick="window.print()" class="year-btn">⎙ Drucken</button>
+      </div>
+    </div>
+
+    <div id="cardList"></div>
+
+  </main>
+
+  <script>
+    const SCHOOLS_FILE = 'data/schulen.geojson';
+
+    const SCHULFORMEN_COLORS = {
+      'Grundschule':    '#2563eb',
+      'Gymnasium':      '#7c3aed',
+      'Gesamtschule':   '#059669',
+      'Hauptschule':    '#0d9488',
+      'Realschule':     '#0891b2',
+      'Sekundarschule': '#047857',
+      'Förderschule':   '#db2777',
+      'Berufsschule':   '#d97706',
+      'Freie Schule':   '#7c3aed',
+      'Andere Schule':  '#71717a',
+    };
+
+    const EIGENSCHAFT_LABELS = {
+      jahrgangsuebergreifend:    'Jahrgangsübergreifend',
+      schuleingangsphase:        'Schuleingangsphase',
+      gebundener_ganztag:        'Gebundener Ganztag',
+      offener_ganztag:           'Offener Ganztag',
+      lernzeiten:                'Lernzeiten',
+      begabtenfoerderung:        'Begabtenförderung',
+      bilingual:                 'Bilingual',
+      inklusion:                 'Inklusion',
+      projektorientiert:         'Projektorientiert',
+      individualisiertes_lernen: 'Individualisiertes Lernen',
+      digitale_bildung:          'Digitale Bildung',
+      berufsorientierung:        'Berufsorientierung',
+      sport:     'Sport',
+      musik:     'Musik',
+      kunst:     'Kunst',
+      theater:   'Theater',
+      tanz:      'Tanz',
+      mint:      'MINT',
+      bne:       'BNE',
+      fremdsprachenprofil: 'Fremdsprachenprofil',
+    };
+
+    function loadWatchlist() {
+      const keys = Object.keys(localStorage).filter(k => k.startsWith('schulkarte_watchlist_'));
+      if (!keys.length) return {};
+      const cityKey = keys.find(k => k.includes('bielefeld')) || keys[0];
+      try { return JSON.parse(localStorage.getItem(cityKey)) || {}; }
+      catch (e) { return {}; }
+    }
+
+    function saveWatchlist(wl) {
+      const keys = Object.keys(localStorage).filter(k => k.startsWith('schulkarte_watchlist_'));
+      const cityKey = keys.find(k => k.includes('bielefeld')) || 'schulkarte_watchlist_bielefeld';
+      localStorage.setItem(cityKey, JSON.stringify(wl));
+    }
+
+    function removeBookmark(id) {
+      const wl = loadWatchlist();
+      if (wl[id]) {
+        wl[id].bookmarked = false;
+        if (!wl[id].note || wl[id].note.trim() === '') delete wl[id];
+      }
+      saveWatchlist(wl);
+      render();
+    }
+
+    function buildCard(s, entry) {
+      const color = SCHULFORMEN_COLORS[s.schulform] || 'var(--color-andere)';
+      const note  = entry?.note?.trim() || '';
+
+      const addrParts = [];
+      if (s.strasse) addrParts.push(s.strasse);
+      if (s.plz || s.ort) addrParts.push(`${s.plz || ''} ${s.ort || ''}`.trim());
+      const addr = addrParts.join(', ');
+
+      const phone = [s.telefon_vorwahl, s.telefon].filter(Boolean).join(' ');
+
+      const contactLinks = [];
+      if (phone) contactLinks.push(`<a href="tel:${phone.replace(/\s/g,'')}" class="auswahl-contact-link">📞 ${phone}</a>`);
+      if (s.email) contactLinks.push(`<a href="mailto:${s.email}" class="auswahl-contact-link">✉ ${s.email}</a>`);
+      if (s.internet) {
+        const url = s.internet.startsWith('http') ? s.internet : `https://${s.internet}`;
+        contactLinks.push(`<a href="${url}" target="_blank" rel="noopener" class="auswahl-contact-link">↗ Website</a>`);
+      }
+
+      const stats = [
+        { label: 'ID',             value: s.id },
+        { label: 'Träger',         value: s.traeger },
+        { label: 'Rechtsform',     value: s.rechtsform },
+        { label: 'Bezirk',         value: s.bezirk },
+        { label: 'Ortsteil',       value: s.ortsteil },
+        { label: 'In Betrieb',     value: s.betrieb_seit },
+        { label: 'Schüler:innen',  value: s.schuelerzahl },
+        { label: 'Lehrkräfte',     value: s.lehrkraefte },
+        { label: 'Personal',       value: s.betreuungspersonal },
+        { label: 'Ø Klassengröße', value: s.klassengroesse_avg },
+        { label: 'Gymnasialquote', value: s.gymnasialquote },
+        { label: 'Sozialindex',    value: s.sozialindex },
+      ].filter(c => c.value !== undefined && c.value !== null && c.value !== '');
+
+      const tags = Array.isArray(s.eigenschaften) ? s.eigenschaften.filter(Boolean) : [];
+
+      return `
+        <article class="auswahl-card">
+
+          ${s.lat && s.lng ? `
+            <div style="position:relative;">
+              <div class="auswahl-map" id="map-${s.id}" data-lat="${s.lat}" data-lng="${s.lng}" data-color="${color}"></div>
+              <div class="auswahl-map-pin" style="--dot-color:${color};">
+                <span class="auswahl-map-dot"></span>${s.schulname}
+              </div>
+            </div>` : ''}
+
+          <div class="auswahl-body">
+
+            <div class="auswahl-body-top">
+              <div>
+                <div class="auswahl-card-name">${s.schulname}</div>
+                ${addr ? `<div class="auswahl-card-addr">📍 ${addr}</div>` : ''}
+                ${contactLinks.length ? `<div class="auswahl-contact">${contactLinks.join('')}</div>` : ''}
+              </div>
+              <button class="auswahl-remove-btn" onclick="removeBookmark('${s.id}')"
+                      title="Aus Auswahl entfernen">✕</button>
+            </div>
+
+            ${note ? `
+              <p class="auswahl-note">${note}</p>` : ''}
+
+            ${stats.length ? `
+              <div class="auswahl-grid">
+                ${stats.map(c => `
+                  <div class="auswahl-cell">
+                    <div class="auswahl-cell-label">${c.label}</div>
+                    <div class="auswahl-cell-val">${c.value}</div>
+                  </div>`).join('')}
+              </div>` : ''}
+
+            ${tags.length ? `
+              <div class="auswahl-tags">
+                ${tags.map(t => `<span class="auswahl-tag">${EIGENSCHAFT_LABELS[t] || t}</span>`).join('')}
+              </div>` : ''}
+
+          </div>
+
+        </article>`;
+    }
+
+    async function render() {
+      const list = document.getElementById('cardList');
+      const sub  = document.getElementById('subtitle');
+
+      const wl         = loadWatchlist();
+      const bookmarked = Object.entries(wl).filter(([, e]) => e.bookmarked).map(([id]) => id);
+
+      if (!bookmarked.length) {
+        sub.textContent = 'Keine Schulen gemerkt';
+        list.innerHTML = `
+          <div class="br3 pa5 tc" style="background:var(--sidebar-bg);border:1px solid var(--border);">
+            <div class="f2 mb3" style="opacity:.3;">★</div>
+            <div class="f6 fw6 mb2" style="color:var(--text);">Noch keine Schulen gemerkt</div>
+            <p class="f7 mt0 mb3 center" style="color:var(--text-muted);max-width:320px;">
+              Öffne die Karte, klicke auf eine Schule und wähle
+              <strong>★ Merken</strong>, um sie hier anzuzeigen.
+            </p>
+            <a href="index.html" class="topnav-btn topnav-btn--active no-underline">Zur Karte →</a>
+          </div>`;
+        return;
+      }
+
+      let allSchools;
+      try {
+        const res  = await fetch(SCHOOLS_FILE);
+        const data = await res.json();
+        allSchools = data.features.map(f => ({
+          ...f.properties,
+          lat: f.geometry.coordinates[1],
+          lng: f.geometry.coordinates[0],
+        }));
+      } catch (e) {
+        list.innerHTML = `<p class="f6 red">Schuldaten konnten nicht geladen werden.</p>`;
+        return;
+      }
+
+      const schoolMap = Object.fromEntries(allSchools.map(s => [s.id, s]));
+      const cards = bookmarked
+        .map(id => schoolMap[id] ? buildCard(schoolMap[id], wl[id]) : null)
+        .filter(Boolean);
+
+      const n = cards.length;
+      sub.textContent = `${n} gemerkte Schule${n !== 1 ? 'n' : ''}`;
+      list.innerHTML = cards.join('');
+
+      // Initialise a mini MapLibre map for each card
+      document.querySelectorAll('.auswahl-map[data-lat]').forEach(el => {
+        const lat   = parseFloat(el.dataset.lat);
+        const lng   = parseFloat(el.dataset.lng);
+        const color = el.dataset.color;
+
+        const miniMap = new maplibregl.Map({
+          container: el,
+          style: 'https://tiles.openfreemap.org/styles/positron',
+          center: [lng, lat],
+          zoom: 15,
+          interactive: false,
+          attributionControl: false,
+        });
+
+        // Add circle marker once style loads
+        miniMap.on('load', () => {
+          miniMap.addSource('pin', {
+            type: 'geojson',
+            data: { type: 'Feature', geometry: { type: 'Point', coordinates: [lng, lat] } }
+          });
+          miniMap.addLayer({
+            id: 'pin-circle',
+            type: 'circle',
+            source: 'pin',
+            paint: {
+              'circle-radius': 8,
+              'circle-color': color,
+              'circle-stroke-width': 2,
+              'circle-stroke-color': '#ffffff',
+            }
+          });
+        });
+      });
+    }
+
+    render();
+  </script>
+
+</body>
+</html>

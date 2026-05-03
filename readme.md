@@ -15,6 +15,7 @@
 
   "rechtsform_code": null,
   "rechtsform": "",
+  "betrieb_seit": "",
 
   "traeger": "",
 
@@ -37,7 +38,39 @@
   "email": "",
   "internet": "",
 
-  "specific": {}
+  "schuelerzahl": "",
+  "lehrkraefte": "",
+  "betreuungspersonal": "",  
+  "klassengroesse_avg": "",  
+  "gymnasialquote": "", 
+  "sozialindex": "",
+
+  "eigenschaften": [
+    "jahrgangsuebergreifend",
+    "schuleingangsphase",
+    "gebundener_ganztag",
+    "offener_ganztag",
+    "lernzeiten",
+
+    "begabtenfoerderung",
+    "bilingual",
+    "inklusion",
+
+    "projektorientiert",
+    "individualisiertes_lernen",
+    "digitale_bildung",
+    "berufsorientierung",
+
+    "sport",
+    "musik",
+    "kunst",
+    "theater",
+    "tanz",
+
+    "mint",
+    "bne",
+    "fremdsprachenprofil"
+  ]
 }
 ```
 

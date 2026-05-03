@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schulinfo – Schulkarte Bielefeld</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../shared/css/tachyons.min.css">
+  <link rel="stylesheet" href="../shared/css/styles.css">
+</head>
+
+<body style="min-height:100dvh;background:var(--bg);display:flex;flex-direction:column;">
+
+  <!-- TOP NAV -->
+  <nav id="topNav">
+    <div class="topnav-left">
+      <a href="index.html" class="topnav-home">
+        <span class="topnav-dot"></span>
+        <span class="topnav-title">Schulkarte Bielefeld</span>
+      </a>
+    </div>
+    <div class="topnav-right">
+      <a href="auswahl.html" class="topnav-btn">Auswahl</a>
+      <a href="schulinfo.html" class="topnav-btn topnav-btn--active">Schulinfo</a>
+      <a href="ueber.html" class="topnav-btn">Über</a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main style="flex:1;max-width:760px;width:100%;margin:0 auto;padding:40px 24px;">
+
+    <div style="margin-bottom:32px;">
+      <div class="section-title">Schulkarte Bielefeld</div>
+      <h1 style="font-size:1.5rem;font-weight:600;color:var(--text);
+                 letter-spacing:-0.02em;margin:4px 0 8px;">Schulinfo</h1>
+      <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;margin:0;">
+        Wissenswertes zu Schulformen, Anmeldung und weiterführenden Informationen
+        rund um Schulen in Bielefeld.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:20px;">
+        <div class="info-label" style="margin-bottom:6px;">Schulformen</div>
+        <div style="font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:6px;">
+          Welche Schultypen gibt es?
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">
+          Grundschule, Gymnasium, Gesamtschule, Realschule und mehr –
+          hier folgt eine Übersicht mit Erklärungen.
+        </div>
+      </div>
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:20px;">
+        <div class="info-label" style="margin-bottom:6px;">Anmeldung</div>
+        <div style="font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:6px;">
+          Wie läuft die Einschulung ab?
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">
+          Fristen, Unterlagen und Ansprechpartner bei der Stadt Bielefeld –
+          bald hier verfügbar.
+        </div>
+      </div>
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:20px;">
+        <div class="info-label" style="margin-bottom:6px;">Einzugsgebiete</div>
+        <div style="font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:6px;">
+          Welche Schule gilt für meinen Wohnort?
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">
+          Informationen zu Grundschulbezirken und freier Schulwahl
+          folgen hier.
+        </div>
+      </div>
+
+      <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                  border-radius:12px;padding:20px;">
+        <div class="info-label" style="margin-bottom:6px;">Sozialindex</div>
+        <div style="font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:6px;">
+          Was bedeutet der Sozialindex?
+        </div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">
+          Der NRW-Sozialindex bewertet das soziale Umfeld einer Schule –
+          eine Erklärung folgt hier.
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background:var(--sidebar-bg);border:1px solid var(--border);
+                border-radius:12px;padding:20px;text-align:center;">
+      <div style="font-size:0.82rem;color:var(--text-muted);">
+        Dieser Bereich wird laufend erweitert.
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -65,6 +65,7 @@ $schulform  = indexBy(readCsv("key_schulformschluessel.csv"),"Schluessel");
 $anzahl     = indexBy(readCsv("anzahlen.csv"),"Schulnummer");
 $sozial     = indexBy(readCsv("sozialindex.csv"),"Schulnummer");
 $bezreg     = indexBy(readCsv("key_bezreg.csv"),"Schlüssel");
+$klassen    = groupBy(readCsv("opendata_Schuelerzahlen_nach_Klasse_Stand_01102022_0.csv"), "Schulnummer");
 
 // =========================
 // TRANSFORM
@@ -77,60 +78,139 @@ foreach ($schools as $s) {
     if (trim($s["Ort"] ?? '') !== $city) continue;
     if (empty($s["UTMRechtswert"]) || empty($s["UTMHochwert"])) continue;
 
-    [$featureLat, $featureLng] = utmToLatLng((float)$s["UTMRechtswert"], (float)$s["UTMHochwert"]);
+    [$featureLat, $featureLng] = utmToLatLng(
+        (float)$s["UTMRechtswert"],
+        (float)$s["UTMHochwert"]
+    );
 
-    $id         = $s["Schulnummer"] ?? null;
-    $code       = $s["Schulform"]   ?? null;
-    $bezregid   = $s["Bezirksregierung"] ?? null;
+    $id       = $s["Schulnummer"] ?? null;
+    $code     = $s["Schulform"] ?? null;
+    $bezregid = $s["Bezirksregierung"] ?? null;
 
     $props = [];
 
-    setProp($props, "id",             $id);
-    setProp($props, "id_key",         "schulnummer");
+    // =========================
+    // BASE FIELDS
+    // =========================
 
-    setProp($props, "schulname",      trim(($s["Schulbezeichnung_1"] ?? '') . ' ' . ($s["Schulbezeichnung_2"] ?? '')));
+    setProp($props, "id", $id);
+    setProp($props, "id_key", "schulnummer");
+
+    setProp($props, "schulname",
+        trim(($s["Schulbezeichnung_1"] ?? '') . ' ' . ($s["Schulbezeichnung_2"] ?? ''))
+    );
+
     setProp($props, "schulname_kurz", $s["Kurzbezeichnung"] ?? null);
 
-    setProp($props, "schulform_raw",  $schulform[$code]["Schulform"] ?? null);
-    setProp($props, "schulform",      mapSchulform($code));
+    setProp($props, "schulform_raw", $schulform[$code]["Schulform"] ?? null);
+    setProp($props, "schulform", mapSchulform($code));
 
-    setProp($props, "traeger",        $traeger[$s["Traegernummer"]]["Traegerbezeichnung_1"] ?? null);
+    setProp($props, "traeger", $traeger[$s["Traegernummer"]]["Traegerbezeichnung_1"] ?? null);
 
     setProp($props, "rechtsform_code", $s["Rechtsform"] ?? null);
     setProp($props, "rechtsform", match($s["Rechtsform"] ?? null) {
-        "1"     => "öffentlich",
-        "2"     => "privat",
+        "1" => "öffentlich",
+        "2" => "privat",
         default => null
     });
 
-    setProp($props, "regbezirk",  $bezreg[$bezregid]["Bezirksregierung"] ?? null);
-    setProp($props, "ort",        $s["Ort"]              ?? null);
-    setProp($props, "plz",        $s["PLZ"]              ?? null);
-    setProp($props, "strasse",    $s["Strasse"]          ?? null);
+    setProp($props, "betrieb_seit",
+        $s["Schulbetriebsdatum"] ?? null
+    );
+
+    setProp($props, "regbezirk", $bezreg[$bezregid]["Bezirksregierung"] ?? null);
+
+    setProp($props, "ort", $s["Ort"] ?? null);
+    setProp($props, "bezirk", $s["Bezirk"] ?? null);          // optional falls vorhanden
+    setProp($props, "ortsteil", $s["Ortsteil"] ?? null);      // falls vorhanden
+
+    setProp($props, "plz", $s["PLZ"] ?? null);
+    setProp($props, "strasse", $s["Strasse"] ?? null);
+
     setProp($props, "bundesland", $bundesland);
 
-    setProp($props, "telefon_vorwahl", $s["Telefonvorwahl"] ?? null);
-    setProp($props, "telefon",         $s["Telefon"]        ?? null);
-    setProp($props, "fax_vorwahl",     $s["Faxvorwahl"]     ?? null);
-    setProp($props, "fax",             $s["Fax"]            ?? null);
-    setProp($props, "email",           $s["E-Mail"]         ?? null);
-    setProp($props, "internet",        $s["Homepage"]       ?? null);
+    // =========================
+    // CONTACT
+    // =========================
 
-    $props["specific"] = array_filter([
-        "schueler"           => $anzahl[$id]["Anzahl"]               ?? null,
-        "sozialindexstufe"   => $sozial[$id]["Sozialindexstufe"]     ?? null,
-        "schulbetriebsdatum" => $s["Schulbetriebsdatum"]             ?? null,
-        "gemeindeschluessel" => $s["Gemeindeschluessel"]             ?? null,
-        "epsg"               => $s["EPSG"]                           ?? null,
-        "traegernummer"      => $s["Traegernummer"]                  ?? null,
-    ], fn($v) => $v !== null);
+    setProp($props, "telefon_vorwahl", $s["Telefonvorwahl"] ?? null);
+    setProp($props, "telefon", $s["Telefon"] ?? null);
+    setProp($props, "fax_vorwahl", $s["Faxvorwahl"] ?? null);
+    setProp($props, "fax", $s["Fax"] ?? null);
+    setProp($props, "email", $s["E-Mail"] ?? null);
+    setProp($props, "internet", $s["Homepage"] ?? null);
+
+    // =========================
+    // NEW FLAT METRICS (WICHTIG)
+    // =========================
+
+    setProp($props, "schuelerzahl",
+        $anzahl[$id]["Anzahl"] ?? null
+    );
+
+    setProp($props, "klassengroesse_avg",
+        avgKlassengroesse($klassen[$id] ?? []) ?? null
+    );
+
+    setProp($props, "sozialindex",
+        $sozial[$id]["Sozialindexstufe"] ?? null
+    );
+
+    // =========================
+    // EIGENSCHAFTEN (NEU)
+    // =========================
+
+    $eigenschaften = [];
+
+    // Beispiel-Mapping (nur wenn Daten vorhanden)
+    if (!empty($s["Ganztag"])) {
+        $eigenschaften[] = $s["Ganztag"] === "ja"
+            ? "gebundener_ganztag"
+            : "offener_ganztag";
+    }
+
+    if (!empty($s["Jahrgangsuebergreifend"])) {
+        $eigenschaften[] = "jahrgangsuebergreifend";
+    }
+
+    if (!empty($s["Inklusion"])) {
+        $eigenschaften[] = "inklusion";
+    }
+
+    if (!empty($s["Bilingual"])) {
+        $eigenschaften[] = "bilingual";
+    }
+
+    if (!empty($s["MINT"])) {
+        $eigenschaften[] = "mint";
+    }
+
+    if (!empty($s["Musik"])) {
+        $eigenschaften[] = "musik";
+    }
+
+    if (!empty($s["Sport"])) {
+        $eigenschaften[] = "sport";
+    }
+
+    setProp($props, "eigenschaften",
+        array_values(array_unique($eigenschaften))
+    );
+
+    // =========================
+    // FEATURE
+    // =========================
 
     $features[] = [
         "type"       => "Feature",
-        "geometry"   => ["type" => "Point", "coordinates" => [$featureLng, $featureLat]],
+        "geometry"   => [
+            "type" => "Point",
+            "coordinates" => [$featureLng, $featureLat]
+        ],
         "properties" => $props,
     ];
 }
+
 
 // =========================
 // OUTPUT

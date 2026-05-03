@@ -27,7 +27,7 @@ function readCsv($file, $delimiter = ";") {
         rewind($handle);
     }
 
-    $header = fgetcsv($handle, 0, $delimiter, '"', '\\');
+    $header = fgetcsv($handle, 0, $delimiter);
     if (!$header) {
         echo "No header in: $file\n";
         return $rows;
@@ -39,7 +39,7 @@ function readCsv($file, $delimiter = ";") {
     // Drop empty trailing column that Excel sometimes adds
     if (end($header) === '') array_pop($header);
 
-    while (($data = fgetcsv($handle, 0, $delimiter, '"', '\\')) !== false) {
+    while (($data = fgetcsv($handle, 0, $delimiter)) !== false) {
         if (!$data) continue;
 
         $data = array_map('trim', $data);
@@ -74,6 +74,41 @@ function indexBy($rows, $key) {
         $out[$row[$key]] = $row;
     }
     return $out;
+}
+
+/**
+ * =========================
+ * GROUP BY KEY
+ * =========================
+ * Turns a flat array of rows into a map of arrays, grouped by a given column.
+ * Unlike indexBy(), multiple rows with the same key are all kept.
+ */
+function groupBy($rows, $key) {
+    $out = [];
+    foreach ($rows as $row) {
+        if (!isset($row[$key])) continue;
+        $out[$row[$key]][] = $row;
+    }
+    return $out;
+}
+
+/**
+ * =========================
+ * AVG KLASSEN SIZE
+ * =========================
+ * Given a group of class rows for one school (as returned by groupBy),
+ * returns the average number of pupils per class, rounded to one decimal.
+ * Rows without a numeric Anzahl_SuS are skipped.
+ */
+function avgKlassengroesse($klassenRows) {
+    $values = array_filter(
+        array_column($klassenRows, 'Anzahl_SuS'),
+        fn($v) => is_numeric($v) && (int)$v > 0
+    );
+
+    if (count($values) === 0) return null;
+
+    return round(array_sum($values) / count($values), 1);
 }
 
 /**
