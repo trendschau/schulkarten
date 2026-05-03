@@ -89,6 +89,138 @@ function isBookmarked(id) {
 }
 
 // ==============================
+// EXPORT WATCHLIST (JSON)
+// ==============================
+
+function exportWatchlist() {
+  const wl = loadWatchlist();
+
+  // bereinigte Kopie erstellen
+  const cleaned = {};
+
+  Object.entries(wl).forEach(([id, entry]) => {
+    cleaned[id] = {
+      bookmarked: !!entry.bookmarked,
+      note: entry.note || ''
+    };
+  });
+
+  const data = {
+    city: getCurrentCity(),
+    items: cleaned
+  };
+
+  const blob = new Blob(
+    [JSON.stringify(data, null, 2)],
+    { type: 'application/json' }
+  );
+
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `schulkarte-${data.city}-watchlist.json`;
+  a.click();
+
+  URL.revokeObjectURL(a.href);
+}
+
+
+// ==============================
+// CITY HELPER
+// ==============================
+
+function getCurrentCity() {
+  return STORAGE_KEY.replace('schulkarte_watchlist_', '');
+}
+
+
+// ==============================
+// IMPORT WATCHLIST (JSON)
+// ==============================
+
+function importWatchlist(file) {
+  const reader = new FileReader();
+
+  reader.onload = e => {
+    try {
+      if (!e.target.result) throw new Error('empty file');
+
+      const raw = e.target.result.trim();
+      const parsed = JSON.parse(raw);
+
+      let items;
+      let city = null;
+
+      // neues Format
+      if (parsed.items && typeof parsed.items === 'object') {
+        items = parsed.items;
+        city = parsed.city || null;
+      }
+
+      // altes Format (Fallback)
+      else if (typeof parsed === 'object' && !Array.isArray(parsed)) {
+        items = parsed;
+      }
+
+      else {
+        throw new Error('invalid structure');
+      }
+
+      // bereinigen + normalisieren
+      const cleaned = {};
+
+      Object.entries(items).forEach(([id, entry]) => {
+        if (!id) return;
+
+        cleaned[id] = {
+          bookmarked: !!entry?.bookmarked,
+          note: entry?.note || ''
+        };
+      });
+
+      // City Check
+      const currentCity = getCurrentCity();
+
+      if (city && city !== currentCity) {
+        const proceed = confirm(
+          `Diese Datei ist für "${city}". Aktuelle Karte ist "${currentCity}". Trotzdem importieren?`
+        );
+        if (!proceed) return;
+      }
+
+      saveWatchlist(cleaned);
+      renderSchools();
+      updateWatchlistBadge();
+
+    } catch (err) {
+      console.error(err);
+      alert('Ungültige Datei');
+    }
+  };
+
+  reader.readAsText(file);
+}
+
+
+// ==============================
+// BUTTON BINDINGS
+// ==============================
+
+// Export Button
+const exportBtn = document.getElementById('exportWatchlistBtn');
+if (exportBtn) {
+  exportBtn.addEventListener('click', exportWatchlist);
+}
+
+// Import Input (type="file")
+const importInput = document.getElementById('importWatchlistInput');
+if (importInput) {
+  importInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) importWatchlist(file);
+  });
+}
+
+// ==============================
 // TOGGLE BOOKMARK
 // ==============================
 
